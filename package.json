@@ -1,0 +1,15 @@
+{
+  "name": "fabrique_resiliente",
+  "version": "1.0.0",
+  "description": "Outil de gestion de production et optimisation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "twig": "^1.15.1"
+  }
+}
