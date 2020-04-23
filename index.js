@@ -10,4 +10,15 @@ app.get('/', (req, res) => {
     res.render('home.html.twig');
 });
 
-app.listen(80);
+app.get('/presentation', (req, res) => {
+    res.render('presentation.html.twig');
+});
+
+app.get('/myfactory', (req, res) => {
+    res.render('myfactory.html.twig');
+});
+
+app.get('/docs', (req, res) => {
+    res.render('docs.html.twig');
+});
+app.listen(1234);
