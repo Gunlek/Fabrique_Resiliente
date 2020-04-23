@@ -1,4 +1,30 @@
 {% extends "libs/template.html.twig" %}
 {% block content %}
 Lancer ma fabrique
+<div>
+    <h2>Objectifs de production</h1>
+    <br>
+    <label>Combien d’habitant y a-t-il dans votre commune ? </label><input type="text" /><br />
+    <label>Souhaitez-vous rendre la port du masque  </label>
+    <select>
+        <option>Obligatoire</option>
+        <option>Recommandé</option>
+        <option>Libre</option>
+    </select>
+    <p>Nous recommandons la distribution de <label>486</label> de masques pour votre commune</p>
+    <label>Combien de masque souhaitez-vous vous procurer ?  </label><input type="text" /><br />
+    <label>A quelle date souhaitez-vous les avoirs à disposition ?  </label><input type="text" /><br />
+</div>
+<br>
+<div>
+    <h2>Capacité de production</h2>
+    <br>
+    <label>Pouvez vous estimer le nombre de personnes ayant une machine à coudre dans votre commune ? </label>
+    <input type="text"/>
+    <p>Le nombre de machine à coudre est le principal facteur limitant de votre production à moyen terme. En général on compte entre une machine pour 300 habitants et une pour 1000. Nous considèrerons pour la suite le cas moyen d’une machine pour 500 habitants</p>
+    <p>Votre capacité de production actuelle varie entre ICIC et LAAE selon le mode de production de la fabrique. </p>
+    <p>Pour vous fournir la quantité de masque souhaitez dans le temps imparti vous manque BEAUCIUP
+		Machines à coudre. Une machine à coudre haute gamme coûte environ 300 euros, en produisant 200 masques vous amortissez cette machine, cela correspond à 5h de couture environ. 
+</p>
+</div>
 {% endblock %}
