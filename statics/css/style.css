@@ -1,0 +1,42 @@
+/* THEME color
+#a7ff83    light
+#17b978
+#086972
+#071a52    dark
+
+*/
+
+html, body {
+    margin: 0 0;
+    padding: 0 0;
+}
+
+.menu {
+    background-color: #086972;
+    margin: 0 0;
+    padding: 0 0;
+    height: 60px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    text-align: center;
+}
+
+.menu ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul li{
+    margin: 0 0;
+    padding: 0 15;
+    display: inline-block;
+    line-height: 60px;
+    color: #a7ff83;
+}
+
+.menu li:hover{
+    background-color: #071a52;
+}

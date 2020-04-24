@@ -3,19 +3,20 @@
         <meta charset="utf-8" />
         <title>Fabrique Résiliente</title>
         <link rel="stylesheet" href="/css/style.css" />
-
-        <h1>Fabrique Résiliente</h1>
-        <ul>
-            <li><a href="/presentation">Présentation</a></li>
-            <li><a href="/myfactory">Lancer ma fabrique</a></li>
-            <li><a href="/docs">Tout savoir sur la fabrique</a></li>
-            <li>Suivi de ma fabrique</li>
-        </ul>
-
     </head>
 
     <body>
-        <header></header>
+        <header>
+            <h1>Fabrique Résiliente</h1>
+            <nav class="menu">
+                <ul>
+                    <a href="/home"><li>Présentation</li></a></li>
+                    <a href="/myfactory"><li>Lancer ma fabrique</li></a></li>
+                    <a href="/docs"><li>Tout savoir sur la fabrique</li></a></li>
+                    <li>Suivi de ma fabrique</li>
+                </ul>
+            </nav>
+        </header>
         <main>
             {% block content %}
             {% endblock %}
