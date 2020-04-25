@@ -21,7 +21,8 @@ Lancer ma fabrique
             </select>
         </div>
 
-        <p>Nous recommandons la distribution de <label>${recommended_mask_number}</label> de masques pour votre commune</p>
+        <p>Nous recommandons la distribution de <label>${recommended_mask_number}</label> de masques pour votre commune afin de pouvoir fournir 10 masques barrières par personne.</p>
+        <p>Vous procurer <label>${recommended_mask_number}</label> masques sur le marché coûterai environ <label>${recommended_mask__market_cost}</label>. Produire vos masques localement permettrait d'économiser environ ${total_production_cost}</p>
 
         <div class="form-group">
             <label>Combien de masque souhaitez-vous vous procurer ?  </label>
@@ -31,8 +32,8 @@ Lancer ma fabrique
             <label>A quelle date souhaitez-vous les avoirs à disposition ?  </label>
             <input type="text" v-model="desired_date" placeholder="jj/mm/yyyy">
         </div>
-
-        <p>Vous procurer ${desired_mask_number} masques sur le marché couterai environ ${total_market_mask_cost} euros, produire vos masques localement permettrait d'economiser environ ${total_market_mask_cost - total_local_mask_cost} euros</p>
+        
+        <p>A cette date, pour atteindre votre objectif, il vous faut une production journalière de: ${computed_masks_per_day} masques par jour</p>
     </form>
 </div>
 <br>
@@ -49,52 +50,5 @@ Lancer ma fabrique
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script>
-    let app = new Vue({
-        el: '#compute_app',
-        delimiters: ['${', '}'],
-        data: {
-            mask_market_cost: 4,
-            mask_local_cost: 0.5,
-
-            city_population: null,
-            mask_politic: 1,
-            desired_mask_number: null,
-            desired_date_day_str: '',
-            desired_date_month_str: '',
-            desired_date_year_str: '',
-
-            sewing_machine_number: null
-        },
-        computed: {
-            recommended_mask_number: function(){
-                return 10 * this.city_population * parseInt(this.mask_politic);
-            },
-            desired_date: {
-                get: function(){
-                    let return_str = this.desired_date_day_str;
-                    if(this.desired_date_month_str.length > 0)
-                        return_str += "/" + this.desired_date_month_str;
-                    if(this.desired_date_year_str.length > 0)
-                        return_str += "/" + this.desired_date_year_str;
-                    return return_str;
-                },
-                set: function(newValue){
-                    let newValue_splt = newValue.split('/');
-                    this.desired_date_day_str = newValue_splt[0];
-                    if(newValue_splt.length > 1)
-                        this.desired_date_month_str = newValue_splt[1];
-                    if(newValue_splt.length > 2)
-                        this.desired_date_year_str = newValue_splt[2];
-                }
-            },
-            total_market_mask_cost: function(){
-                return this.mask_market_cost * this.desired_mask_number;
-            },
-            total_local_mask_cost: function(){
-                return this.mask_local_cost * this.desired_mask_number;
-            }
-        }
-    });
-</script>
+<script src="/js/vue_compute.js"></script>
 {% endblock %}
