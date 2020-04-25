@@ -39,7 +39,7 @@ let app = new Vue({
     },
     computed: {
         recommended_mask_number: function(){
-            return this.nb_mask_per_person * this.city_population * parseInt(this.mask_politic);
+            return this.nb_mask_per_person * this.city_population * parseFloat(this.mask_politic);
         },
         recommended_mask_market_cost: function(){
             return this.mask_market_cost * this.recommended_mask_number;
