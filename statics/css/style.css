@@ -9,6 +9,7 @@
 html, body {
     margin: 0 0;
     padding: 0 0;
+    background-color: #eee;
 }
 
 .menu {
@@ -39,4 +40,23 @@ html, body {
 
 .menu li:hover{
     background-color: #071a52;
+}
+
+/*
+ * Box Layout
+ */
+.box-layout {
+    width: 75%;
+    margin-left: 12.5%;
+}
+
+/*
+ * Card design
+ */
+.card {
+    background-color: white;
+    padding: 20px;
+}
+.card-height-1 {
+    box-shadow: 5px 5px 5px rgba(33, 33, 33, 0.5);
 }

@@ -23,7 +23,12 @@ let app = new Vue({
         desired_date_month_str: '',
         desired_date_year_str: '',
 
-        sewing_machine_number: null
+        sewing_machine_number_estimation: '1',
+        sewing_machine_number: null,
+        average_sewing_machine_per_people: 1/1000,
+
+        nb_motiv_centralized_model: 10,
+        nb_motiv_semi_centralized_model_in_workshop: 15
     },
     computed: {
         recommended_mask_number: function(){
@@ -31,9 +36,6 @@ let app = new Vue({
         },
         recommended_mask__market_cost: function(){
             return this.mask_market_cost * this.recommended_mask_number;
-        },
-        home_made_mask_price_per_unit: function(){
-
         },
 
         // Computing functions to get mask price
@@ -76,7 +78,6 @@ let app = new Vue({
             return Math.ceil(this.desired_mask_number / this.number_of_days_between_now_and_desired);
         },
 
-
         desired_date: {
             get: function(){
                 let return_str = this.desired_date_day_str;
@@ -100,6 +101,19 @@ let app = new Vue({
         },
         total_local_mask_cost: function(){
             return this.mask_local_cost * this.desired_mask_number;
+        },
+
+        /*
+         * Production model algorithms
+        */
+        computed_sewing_machine_in_city: function(){
+            return Math.floor(this.city_population * this.average_sewing_machine_per_people);
+        },
+        local_size_in_square_meter_centralized_model: function(){
+            return 6 * this.nb_motiv_centralized_model;
+        },
+        local_size_in_square_meter_semi_centralized_model: function(){
+            return 6 * this.nb_motiv_semi_centralized_model_in_workshop;
         }
     }
 });

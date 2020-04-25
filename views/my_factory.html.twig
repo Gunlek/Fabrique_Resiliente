@@ -2,52 +2,94 @@
 {% block content %}
 Lancer ma fabrique
 <link rel="stylesheet" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css">
-<div id="compute_app">
-<div>
-    <h2>Objectifs de production</h2>
-    <br>
+<div id="compute_app" class="box-layout">
+    <form id="firstPartForm" class="card card-height-1">
+        <h2>Objectifs de production</h2>
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group">
+                    <label>Combien d’habitant y a-t-il dans votre commune ? </label>
+                    <input type="number" v-model="city_population" />
+                </div>
+                <div class="form-group">
+                    <label>Souhaitez-vous rendre la port du masque:</label>
+                    <select v-model="mask_politic">
+                        <option value="1">Obligatoire</option>
+                        <option value="0.8">Recommandé</option>
+                        <option value="0.6">Libre</option>
+                    </select>
+                </div>
 
-    <form id="firstPartForm">
-        <div class="form-group">
-            <label>Combien d’habitant y a-t-il dans votre commune ? </label>
-            <input type="number" v-model="city_population" />
-        </div>
-        <div class="form-group">
-            <label>Souhaitez-vous rendre la port du masque:</label>
-            <select v-model="mask_politic">
-                <option value="1">Obligatoire</option>
-                <option value="0.8">Recommandé</option>
-                <option value="0.6">Libre</option>
-            </select>
-        </div>
+                <p>Nous recommandons la distribution de <label>${recommended_mask_number}</label> de masques pour votre commune afin de pouvoir fournir 10 masques barrières par personne.</p>
+                <p>Vous procurer <label>${recommended_mask_number}</label> masques sur le marché coûterai environ <label>${recommended_mask__market_cost}</label>. Produire vos masques localement permettrait d'économiser environ ${total_production_cost}</p>
 
-        <p>Nous recommandons la distribution de <label>${recommended_mask_number}</label> de masques pour votre commune afin de pouvoir fournir 10 masques barrières par personne.</p>
-        <p>Vous procurer <label>${recommended_mask_number}</label> masques sur le marché coûterai environ <label>${recommended_mask__market_cost}</label>. Produire vos masques localement permettrait d'économiser environ ${total_production_cost}</p>
+                <div class="form-group">
+                    <label>Combien de masque souhaitez-vous vous procurer ?  </label>
+                    <input type="text" v-model="desired_mask_number" />
+                </div>
+                <div class="form-group">
+                    <label>A quelle date souhaitez-vous les avoirs à disposition ?  </label>
+                    <input type="text" v-model="desired_date" placeholder="jj/mm/yyyy">
+                </div>
+                
+                <p>A cette date, pour atteindre votre objectif, il vous faut une production journalière de: ${computed_masks_per_day} masques par jour</p>
+            </div>
 
-        <div class="form-group">
-            <label>Combien de masque souhaitez-vous vous procurer ?  </label>
-            <input type="text" v-model="desired_mask_number" />
+            <div class="col-4">
+
+            </div>
         </div>
-        <div class="form-group">
-            <label>A quelle date souhaitez-vous les avoirs à disposition ?  </label>
-            <input type="text" v-model="desired_date" placeholder="jj/mm/yyyy">
-        </div>
-        
-        <p>A cette date, pour atteindre votre objectif, il vous faut une production journalière de: ${computed_masks_per_day} masques par jour</p>
     </form>
-</div>
-<br>
-<div>
-    <h2>Capacité de production</h2>
+
     <br>
-    <label>Pouvez vous estimer le nombre de personnes ayant une machine à coudre dans votre commune ? </label>
-    <input type="number" v-model="sewing_machine_number"/>
-    <p>Le nombre de machine à coudre est le principal facteur limitant de votre production à moyen terme. En général on compte entre une machine pour 300 habitants et une pour 1000. Nous considèrerons pour la suite le cas moyen d’une machine pour 500 habitants</p>
-    <p>Votre capacité de production actuelle varie entre ICIC et LAAE selon le mode de production de la fabrique. </p>
-    <p>Pour vous fournir la quantité de masque souhaitez dans le temps imparti vous manque BEAUCIUP
-		Machines à coudre. Une machine à coudre haute gamme coûte environ 300 euros, en produisant 200 masques vous amortissez cette machine, cela correspond à 5h de couture environ. 
-</p>
-</div>
+
+    <form id="secondPartForm" class="card card-height-1">
+        <h2>Capacité de production</h2>
+        <br>
+        <div class="form-group">
+            <label>Pouvez vous estimer le nombre de personnes ayant une machine à coudre dans votre commune ? </label>
+            <input type="radio" name="sewing_estimation" v-model="sewing_machine_number_estimation" value="1" />Oui
+            <input type="radio" name="sewing_estimation" v-model="sewing_machine_number_estimation" value="0" />Non
+        </div>
+        <div class="form-group" v-if="sewing_machine_number_estimation=='1'">
+            <label>Votre estimation:</label>
+            <input type="number" v-model="sewing_machine_number" />
+        </div>
+        <div class="form-group" v-if="sewing_machine_number_estimation=='0'">
+            <label>Estimation automatique:</label>
+            <input type="number" v-model="average_sewing_machine_per_people" step="any"/> Machine par habitant<br/>
+            <input type="number" v-model="computed_sewing_machine_in_city" disabled/> Machine(s) dans la ville
+            <p>Le nombre de machine à coudre est le principal facteur limitant de votre production à moyen terme. En général on compte entre une machine pour 500 habitants et une pour 1000.</p>
+        </div>
+
+        <p>Il y a deux méthodes de production possibles:</p>
+        <div class="row">
+            <div class="col-6">
+                <p>Centralisé</p>
+                <p>Explications</p>
+                <p>Dans le modèle centralisé, en tenant compte du nombre de bénévoles que vous avez à disposition, il vous faudrait un local de ${local_size_in_square_meter}m²</p>
+                <p>En moyenne, on estime un temps de production d'environ K1 heures en modèle centralisé et par conséquent on estime une capacité de production qui varie entre L1 et L2 masques par jour</p>
+            </div>
+
+            <div class="col-6">
+                <p>Centralisé</p>
+                <p>Explications</p>
+                <p>Dans le modèle centralisé, en tenant compte du nombre de bénévoles que vous avez à disposition, il vous faudrait un local de ${local_size_in_square_meter_semi_centralized_model}m²</p>
+                <p>En moyenne, on estime un temps de production d'environ K2 heures en modèle centralisé et par conséquent on estime une capacité de production qui varie entre L3 et L4 masques par jour</p>
+            </div>
+        </div>
+        <p>Dans le meilleur des cas, vous avez suffisamment de machine à coudre pour vous fournir la quantité de masque souhaitée dans le temps imparti, il n’y pas d’investissement de machine à coudre à faire. Si le nombre de machine à coudre ne permet pas d’équiper tous les habitants à la date souhaitée, il vous manque entre M1 et M2 machines à coudre. Une machine à coudre coûte en moyenne 150 euros.  En achetant les M2 vous réalisez toujours une économie de O euros en fabriquant vos masques au lieu de les acheter. 
+            Si vous ne souhaitez pas investir dans des machines :
+            Soit il vous faut un délai de P1 jours supplémentaires pour atteindre vos objectifs si vous choisissez le modèle centralisé ou P2 pour un choix d’un modèle semi-centralisé. 
+            
+            Sois-vous devrez acheter Q1 masques sur le marché pour compléter votre production si vous choisissez le modèle centralisé, ou Q2 pour un choix d’un modèle semi-centralisé
+        </p>
+        <p>
+            Il est également possible de faire une combinaison des deux avec une partie de la production dans un local et l’autre partie chez des particuliers qui ont une machine à coudre.
+        </p>
+        <p>Quel est la surface du local que vous pouvez mettre à disposition ? R</p>
+        <p>Dans ce local nous recommandons de ne pas faire travailler plus de S personnes afin de minimiser les risques sanitaires. (voir protocole sanitaire)</p>
+    </form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="/js/vue_compute.js"></script>
