@@ -106,7 +106,6 @@ border-radius: 6px;
 position: absolute;
 bottom: 110%;
 left: -100px;
-z-index: 1;
 }
 
 .tooltip:hover .tooltiptext {
@@ -133,7 +132,10 @@ visibility: visible;
     padding: 20px;
 }
 .card-height-1 {
-    box-shadow: 5px 5px 5px rgba(33, 33, 33, 0.5);
+    box-shadow: 3px 3px 5px rgba(33, 33, 33, 0.5);
+}
+.card-height-2 {
+    box-shadow: 8px 8px 10px rgba(33, 33, 33, 0.5);
 }
 
 /*

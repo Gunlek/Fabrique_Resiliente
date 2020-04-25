@@ -24,13 +24,22 @@
             <p>Il y a deux méthodes de production possibles:</p>
             <div class="row">
                 <div class="col-6">
-                    {% include "forms/centralized_table.html.twig" %}
+                    <div class="card card-height-2">
+                        {% include "forms/centralized_table.html.twig" %}
+                    </div>
                 </div>
 
                 <div class="col-6">
-                    {% include "forms/semi_centralized_table.html.twig" %}
+                    <div class="card card-height-2">
+                        {% include "forms/semi_centralized_table.html.twig" %}
+                    </div>
                 </div>
             </div>
+            <p>Si vous constatez que vous n'avez pas assez de machine à coudre pour atteindre vos objectifs, vous pouvez considérer ceci:</p>
+            <p>Une machine à coudre coûte environ 150 euros. Pour chaque masque fait avec cette machine, vous économisez <strong class="tooltip">${difference_between_local_and_market}<span class="tooltiptext">Tooltip Text</span></strong> euros. En <strong class="tooltip">${amortization}<span class="tooltiptext">Tooltip Text</span></strong> heures de fonctionnement, vous avez rentabilisé votre machine. Attention, le temps de livraison de la machine peut être assez long.</p>
+            <p>Il est également possible de faire une combinaison des deux avec une partie de la production dans un local et l'autre partie chez des particuliers qui ont une machine à coudre.</p>
+            <p>Quel est la surface du local que vous pouvez mettre à disposition ?</p>
+            <p>Dans ce local, en admettant que vous ne mettez pas plus d'une personne pour 6m² (cf. protocole sanitaire), et que vous avez <strong class="tooltip">${sewing_machine_number}<span class="tooltiptext">Tooltip Text</span></strong> machines à coudre:</p>
         </div>
 
         <div class="col-4" style="border-left: 1px solid #333; padding-left: 10px;">
