@@ -1,10 +1,7 @@
 let app = new Vue({
     el: '#compute_app',
     delimiters: ['${', '}'],
-    data: {
-        mask_market_cost: 3.5,          // This is the market cost of a mask
-        mask_local_cost: 0.5,           // This is the final cost of a mask which has been home made
-
+    data: {        
         // Individual price for goods required to make a mask
         elastic_cost_per_unit: 0.25,
         tissue_cost_per_square_meter: 5.94,     // In square meter
@@ -16,6 +13,13 @@ let app = new Vue({
         plastic_sleeve_length_per_pocket: 1,
         mask_per_pocket: 10,
 
+        // First estimator
+        // Parameters
+        nb_mask_per_person: 2,
+        mask_market_cost: 3.5,          // This is the market cost of a mask
+        mask_local_cost: 0.5,
+        startup_delay: 2,
+        // Variables
         city_population: null,
         mask_politic: 1,
         desired_mask_number: null,
@@ -23,6 +27,7 @@ let app = new Vue({
         desired_date_month_str: '',
         desired_date_year_str: '',
 
+        // Second estimator
         sewing_machine_number_estimation: '1',
         sewing_machine_number: null,
         average_sewing_machine_per_people: 1/1000,
@@ -32,9 +37,9 @@ let app = new Vue({
     },
     computed: {
         recommended_mask_number: function(){
-            return 10 * this.city_population * parseInt(this.mask_politic);
+            return this.nb_mask_per_person * this.city_population * parseInt(this.mask_politic);
         },
-        recommended_mask__market_cost: function(){
+        recommended_mask_market_cost: function(){
             return this.mask_market_cost * this.recommended_mask_number;
         },
 
@@ -64,7 +69,11 @@ let app = new Vue({
             return this.plastic_sleeve_quantity_for_production * this.plastic_sleeve_cost_per_meter;
         },
         total_production_cost: function(){
-            return Math.floor((this.tissue_cost_for_production + this.elastic_cost_for_production + this.elastic_cost_for_production + this.plastic_sleeve_cost_for_production)*100)/100;
+            return Math.floor(this.mask_local_cost * this.recommended_mask_number);
+            // return Math.floor((this.tissue_cost_for_production + this.elastic_cost_for_production + this.elastic_cost_for_production + this.plastic_sleeve_cost_for_production)*100)/100;
+        },
+        difference_between_local_and_market: function() {
+            return this.recommended_mask_market_cost - this.total_production_cost;
         },
 
         number_of_days_between_now_and_desired: function(){
@@ -75,7 +84,7 @@ let app = new Vue({
             return diffDays;
         },
         computed_masks_per_day: function(){
-            return Math.ceil(this.desired_mask_number / this.number_of_days_between_now_and_desired);
+            return Math.ceil(this.desired_mask_number / (this.number_of_days_between_now_and_desired - this.startup_delay));
         },
 
         desired_date: {

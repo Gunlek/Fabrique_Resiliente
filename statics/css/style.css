@@ -12,6 +12,11 @@ html, body {
     background-color: #eee;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: sans-serif;
+    color: #333;
+}
+
 .menu {
     background-color: #086972;
     margin: 0 0;
@@ -51,12 +56,142 @@ html, body {
 }
 
 /*
+ *  Form style
+ */
+.form-group
+{
+    margin: 10px 0;
+}
+
+.form-group label
+{
+    display: block;
+}
+
+input[type="text"], input[type="number"], select
+{
+    width: 100%;
+    height: 30px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    box-shadow: none;
+    transition: box-shadow 0.2s;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, select:focus
+{
+    border: 1px solid #3498db;
+    box-shadow: 0px 0px 10px #3498db;
+    transition: box-shadow 0.2s;
+}
+
+/*
+ * Tooltip
+ */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+visibility: hidden;
+width: 200px;
+background-color: black;
+color: #fff;
+text-align: center;
+padding: 5px 0;
+border-radius: 6px;
+
+position: absolute;
+bottom: 110%;
+left: -100px;
+z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+visibility: visible;
+}
+
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%;  /* At the top of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+/*
  * Card design
  */
 .card {
+    font-family: sans-serif;
     background-color: white;
     padding: 20px;
 }
 .card-height-1 {
     box-shadow: 5px 5px 5px rgba(33, 33, 33, 0.5);
+}
+
+/*
+ * Grid system
+ */
+.row {
+    display: flex;
+}
+
+.col, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+    flex: auto;
+    padding: 10px;
+}
+
+.col-1 {
+    width: 8.3333333333%;
+}
+
+.col-2 {
+    width: 16.6666666667%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-4 {
+    width: 33.3333333333%;
+}
+
+.col-5 {
+    width: 41.6666666667%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-7 {
+    width: 58.3333333333%;
+}
+
+.col-8 {
+    width: 66.6666666667%;
+}
+
+.col-9 {
+    width: 75%;
+}
+
+.col-10 {
+    width: 83.3333333333%;
+}
+
+.col-11 {
+    width: 91.6666666667%;
+}
+
+.col-12 {
+    width: 100%;
 }
