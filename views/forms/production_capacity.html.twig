@@ -1,0 +1,54 @@
+<form id="secondPartForm" class="card card-height-1">
+    <div class="row">
+        <div class="col-8">
+            <h2>Capacité de production</h2>
+            <br>
+            <div class="form-group">
+                <label>Pouvez vous estimer le nombre de personnes ayant une machine à coudre dans votre commune ? </label>
+                <input type="radio" name="sewing_estimation" v-model="sewing_machine_number_estimation" value="1" />Oui
+                <input type="radio" name="sewing_estimation" v-model="sewing_machine_number_estimation" value="0" />Non
+            </div>
+            <div class="form-group" v-if="sewing_machine_number_estimation=='1'">
+                <label>Votre estimation:</label>
+                <input type="number" v-model="sewing_machine_number" />
+            </div>
+            <div class="form-group" v-if="sewing_machine_number_estimation=='0'">
+                <label>Estimation automatique:</label><br/>
+                <label>Machine par habitant (par défaut, 1 pour 1000):</label>
+                <input type="number" v-model="average_sewing_machine_per_people" step="any"/><br/>
+                <label>Machine(s) dans la ville: </label>
+                <input type="number" v-model="computed_sewing_machine_in_city" disabled/>
+                <p>Le nombre de machine à coudre est le principal facteur limitant de votre production à moyen terme. En général on compte entre une machine pour 500 habitants et une pour 1000.</p>
+            </div>
+
+            <p>Il y a deux méthodes de production possibles:</p>
+            <div class="row">
+                <div class="col-6">
+                    {% include "forms/centralized_table.html.twig" %}
+                </div>
+
+                <div class="col-6">
+                    {% include "forms/semi_centralized_table.html.twig" %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4" style="border-left: 1px solid #333; padding-left: 10px;">
+            <h2>Paramètres</h2>
+            <form>
+                <div class="form-group">
+                    <label>Heures de production en centralisé:</label>
+                    <input type="number" v-model="prod_time_centralized_hours" step="any"/>
+                </div>
+                <div class="form-group">
+                    <label>Heures de production en semi-centralisé:</label>
+                    <input type="number" v-model="prod_time_semi_centralized_hours" step="any"/>
+                </div>
+                <div class="form-group">
+                    <label>Temps de fabrication sur une machine (secondes):</label>
+                    <input type="number" v-model="production_time_per_machine" step="any"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</form>

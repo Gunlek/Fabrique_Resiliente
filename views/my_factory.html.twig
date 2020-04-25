@@ -2,111 +2,11 @@
 {% block content %}
 <link rel="stylesheet" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css">
 <div id="compute_app" class="box-layout">
-    <form id="firstPartForm" class="card card-height-1">
-        <div class="row">
-            <div class="col-8">
-                <h2>Objectifs de production</h2>
-                <div class="form-group">
-                    <label>Combien d’habitant y a-t-il dans votre commune ? </label>
-                    <input type="number" v-model="city_population" />
-                </div>
-                <div class="form-group">
-                    <label>Souhaitez-vous rendre la port du masque:</label>
-                    <select v-model="mask_politic">
-                        <option value="1">Obligatoire</option>
-                        <option value="0.8">Recommandé</option>
-                        <option value="0.6">Libre</option>
-                    </select>
-                </div>
-
-                <p>Nous recommandons la distribution de <strong class="tooltip">${recommended_mask_number}<span class="tooltiptext">Tooltip text</span></strong> masques pour votre commune afin de pouvoir fournir 10 masques barrières par personne.</p>
-                <p>Vous procurer <strong class="tooltip">${recommended_mask_number}<span class="tooltiptext">Tooltip text</span></strong> masques sur le marché coûterai environ <strong class="tooltip">${recommended_mask_market_cost}€<span class="tooltiptext">Tooltip text</span></strong>. Un masque de la fabrique coûte environ <strong class="tooltip">${mask_local_cost}<span class="tooltiptext">Tooltip text</span></strong> euros. Produire vos masques localement permettrait d'économiser environ <strong class="tooltip">${difference_between_local_and_market}€<span class="tooltiptext">Tooltip text</span></strong></p>
-
-                <div class="form-group">
-                    <label>Combien de masque souhaitez-vous vous procurer ?</label>
-                    <input type="text" v-model="desired_mask_number" />
-                </div>
-                <div class="form-group">
-                    <label>A quelle date souhaitez-vous les avoirs à disposition ?  </label>
-                    <input type="text" v-model="desired_date" placeholder="jj/mm/yyyy">
-                </div>
-                
-                <p>A cette date, pour atteindre votre objectif, il vous faut une production journalière de: <strong class="tooltip">${computed_masks_per_day}<span class="tooltiptext">Tooltip text</span></strong> masques par jour</p>
-            </div>
-
-            <div class="col-4" style="border-left: 1px solid #333; padding-left: 10px;">
-                <h2>Paramètres</h2>
-                <form>
-                    <div class="form-group">
-                        <label>Nombre de masques par personnes:</label>
-                        <input type="number" v-model="nb_mask_per_person" step="any"/>
-                    </div>
-                    <div class="form-group">
-                        <label>Prix d'un masque en tissu sur le marché:</label>
-                        <input type="number" v-model="mask_market_cost" step="any"/>
-                    </div>
-                    <div class="form-group">
-                        <label>Prix d'un masque en tissu fabriqué:</label>
-                        <input type="number" v-model="mask_local_cost" step="any"/>
-                    </div>
-                    <div class="form-group">
-                        <label>Délai de démarrage de production (jours):</label>
-                        <input type="number" v-model="startup_delay" step="1"/>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </form>
+    {% include "forms/production_targets.html.twig" %}
 
     <br>
 
-    <form id="secondPartForm" class="card card-height-1">
-        <h2>Capacité de production</h2>
-        <br>
-        <div class="form-group">
-            <label>Pouvez vous estimer le nombre de personnes ayant une machine à coudre dans votre commune ? </label>
-            <input type="radio" name="sewing_estimation" v-model="sewing_machine_number_estimation" value="1" />Oui
-            <input type="radio" name="sewing_estimation" v-model="sewing_machine_number_estimation" value="0" />Non
-        </div>
-        <div class="form-group" v-if="sewing_machine_number_estimation=='1'">
-            <label>Votre estimation:</label>
-            <input type="number" v-model="sewing_machine_number" />
-        </div>
-        <div class="form-group" v-if="sewing_machine_number_estimation=='0'">
-            <label>Estimation automatique:</label>
-            <input type="number" v-model="average_sewing_machine_per_people" step="any"/> Machine par habitant<br/>
-            <input type="number" v-model="computed_sewing_machine_in_city" disabled/> Machine(s) dans la ville
-            <p>Le nombre de machine à coudre est le principal facteur limitant de votre production à moyen terme. En général on compte entre une machine pour 500 habitants et une pour 1000.</p>
-        </div>
-
-        <p>Il y a deux méthodes de production possibles:</p>
-        <div class="row">
-            <div class="col-6">
-                <p>Centralisé</p>
-                <p>Explications</p>
-                <p>Dans le modèle centralisé, en tenant compte du nombre de bénévoles que vous avez à disposition, il vous faudrait un local de ${local_size_in_square_meter}m²</p>
-                <p>En moyenne, on estime un temps de production d'environ K1 heures en modèle centralisé et par conséquent on estime une capacité de production qui varie entre L1 et L2 masques par jour</p>
-            </div>
-
-            <div class="col-6">
-                <p>Centralisé</p>
-                <p>Explications</p>
-                <p>Dans le modèle centralisé, en tenant compte du nombre de bénévoles que vous avez à disposition, il vous faudrait un local de ${local_size_in_square_meter_semi_centralized_model}m²</p>
-                <p>En moyenne, on estime un temps de production d'environ K2 heures en modèle centralisé et par conséquent on estime une capacité de production qui varie entre L3 et L4 masques par jour</p>
-            </div>
-        </div>
-        <p>Dans le meilleur des cas, vous avez suffisamment de machine à coudre pour vous fournir la quantité de masque souhaitée dans le temps imparti, il n’y pas d’investissement de machine à coudre à faire. Si le nombre de machine à coudre ne permet pas d’équiper tous les habitants à la date souhaitée, il vous manque entre M1 et M2 machines à coudre. Une machine à coudre coûte en moyenne 150 euros.  En achetant les M2 vous réalisez toujours une économie de O euros en fabriquant vos masques au lieu de les acheter. 
-            Si vous ne souhaitez pas investir dans des machines :
-            Soit il vous faut un délai de P1 jours supplémentaires pour atteindre vos objectifs si vous choisissez le modèle centralisé ou P2 pour un choix d’un modèle semi-centralisé. 
-            
-            Sois-vous devrez acheter Q1 masques sur le marché pour compléter votre production si vous choisissez le modèle centralisé, ou Q2 pour un choix d’un modèle semi-centralisé
-        </p>
-        <p>
-            Il est également possible de faire une combinaison des deux avec une partie de la production dans un local et l’autre partie chez des particuliers qui ont une machine à coudre.
-        </p>
-        <p>Quel est la surface du local que vous pouvez mettre à disposition ? R</p>
-        <p>Dans ce local nous recommandons de ne pas faire travailler plus de S personnes afin de minimiser les risques sanitaires. (voir protocole sanitaire)</p>
-    </form>
+    {% include "forms/production_capacity.html.twig" %}
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="/js/vue_compute.js"></script>
