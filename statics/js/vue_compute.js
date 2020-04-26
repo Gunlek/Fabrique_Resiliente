@@ -36,6 +36,7 @@ let app = new Vue({
         sewing_machine_number_estimation: '1',
         sewing_machine_number: 0,
         average_sewing_machine_per_people: 1/1000,
+        allocated_area: 0,
     },
     computed: {
         recommended_mask_number: function(){
@@ -43,36 +44,6 @@ let app = new Vue({
         },
         recommended_mask_market_cost: function(){
             return this.mask_market_cost * this.recommended_mask_number;
-        },
-
-        // Computing functions to get mask price
-        tissue_quantity_per_mask: function(){
-            return this.tissue_per_layer * this.layer_number;
-        },
-        tissue_quantity_for_production: function(){
-            return this.tissue_quantity_per_mask * this.recommended_mask_number;
-        },
-        elastic_quantity_for_production: function(){
-            return this.elastic_per_mask * this.recommended_mask_number;
-        },
-        pocket_quantity_for_production: function(){
-            return this.recommended_mask_number / this.mask_per_pocket;
-        },
-        plastic_sleeve_quantity_for_production: function(){
-            return this.plastic_sleeve_length_per_pocket * this.pocket_quantity_for_production;
-        },
-        tissue_cost_for_production: function(){
-            return this.tissue_quantity_for_production * this.tissue_cost_per_square_meter;
-        },
-        elastic_cost_for_production: function(){
-            return this.elastic_quantity_for_production * this.elastic_cost_per_unit;
-        },
-        plastic_sleeve_cost_for_production: function(){
-            return this.plastic_sleeve_quantity_for_production * this.plastic_sleeve_cost_per_meter;
-        },
-        total_production_cost: function(){
-            return Math.floor(this.mask_local_cost * this.recommended_mask_number);
-            // return Math.floor((this.tissue_cost_for_production + this.elastic_cost_for_production + this.elastic_cost_for_production + this.plastic_sleeve_cost_for_production)*100)/100;
         },
         difference_between_local_and_market: function() {
             return this.recommended_mask_market_cost - this.total_production_cost;
@@ -169,6 +140,62 @@ let app = new Vue({
         },
         amortization: function(){
             return 150 / (3600/this.production_time_per_machine);
+        },
+
+        /*
+         * Table details
+         */
+        volunteers: function(){
+            return 1.3 * this.sewing_machine_number;
+        },
+        volunteers_in_workshop_centralized: function(){
+            return this.volunteers;
+        },
+        volunteers_in_workshop_semi_centralized: function(){
+            return 0.3 * this.sewing_machine_number;
+        },
+        
+        // Table 2
+        // Computing functions to get mask price
+        tissue_quantity_per_mask: function(){
+            return this.tissue_per_layer * this.layer_number;
+        },
+        tissue_quantity_for_production: function(){
+            return this.tissue_quantity_per_mask * this.desired_mask_number;
+        },
+        elastic_quantity_for_production: function(){
+            return this.elastic_per_mask * this.desired_mask_number;
+        },
+        pocket_quantity_for_production: function(){
+            return this.desired_mask_number / this.mask_per_pocket;
+        },
+        plastic_sleeve_quantity_for_production: function(){
+            return this.plastic_sleeve_length_per_pocket * this.pocket_quantity_for_production;
+        },
+        tissue_cost_for_production: function(){
+            return this.tissue_quantity_for_production * this.tissue_cost_per_square_meter;
+        },
+        elastic_cost_for_production: function(){
+            return this.elastic_quantity_for_production * this.elastic_cost_per_unit;
+        },
+        plastic_sleeve_cost_for_production: function(){
+            return this.plastic_sleeve_quantity_for_production * this.plastic_sleeve_cost_per_meter;
+        },
+        total_production_cost: function(){
+            return Math.floor(this.mask_local_cost * this.desired_mask_number);
+            // return Math.floor((this.tissue_cost_for_production + this.elastic_cost_for_production + this.elastic_cost_for_production + this.plastic_sleeve_cost_for_production)*100)/100;
+        },
+        cutting_people: function(){
+            return Math.ceil(0.3 * this.sewing_machine_number);
+        },
+        scisors_and_iron_number: function(){
+            return Math.ceil(0.3 * this.sewing_machine_number);
+        },
+        packing_people: function(){
+            return Math.ceil(0.1 * this.sewing_machine_number);
+        },
+        visor_quantity: function(){
+            return this.volunteers * 1.5;
         }
     }
 });
