@@ -18,15 +18,26 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .menu {
-    background-color: #086972;
+    background-color: #3498db;
     margin: 0 0;
     padding: 0 0;
     height: 60px;
-    position: fixed;
+    position: relative;
     left: 0;
     right: 0;
     top: 0;
-    text-align: center;
+    margin-bottom: 20px;
+}
+
+.left-align {
+    position: absolute;
+    left: 0;
+}
+
+.right-align
+{
+    position: absolute;
+    right: 0;
 }
 
 .menu ul{
@@ -40,11 +51,16 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 15;
     display: inline-block;
     line-height: 60px;
-    color: #a7ff83;
+    color: #ecf0f1;
+    font-family: sans-serif;
+    font-weight: bold;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 .menu li:hover{
-    background-color: #071a52;
+    background-color: #2980b9;
+    color: #f1c40f;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 /*
