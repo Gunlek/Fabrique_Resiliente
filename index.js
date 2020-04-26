@@ -22,4 +22,4 @@ app.get('/myfactory', (req, res) => {
 app.get('/docs', (req, res) => {
     res.render('docs.html.twig');
 });
-app.listen(process.env.DEBUG == "true" ? parseInt(process.env.DEBUG_SERVER_PORT) : parseInt(process.env.PROD_SERVER_PROD));
+app.listen(process.env.DEBUG == "true" ? parseInt(process.env.DEBUG_SERVER_PORT) : parseInt(process.env.PROD_SERVER_PORT));
