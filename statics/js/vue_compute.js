@@ -173,10 +173,10 @@ let app = new Vue({
             return Math.floor(this.city_population * this.average_sewing_machine_per_people);
         },
         local_size_in_square_meter_centralized_model: function(){
-            return Math.ceil(6 * 1.3 * this.sewing_machine_number);
+            return Math.ceil(8 * 1.3 * this.sewing_machine_number);
         },
         local_size_in_square_meter_semi_centralized_model: function(){
-            return Math.ceil(6 * 0.3 * this.sewing_machine_number);
+            return Math.ceil(8 * 0.3 * this.sewing_machine_number);
         },
         computed_dayli_production_centralized: function(){
             return this.sewing_machine_number * this.prod_time_centralized / this.production_time_per_machine;
