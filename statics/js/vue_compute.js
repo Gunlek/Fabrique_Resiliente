@@ -43,7 +43,12 @@ let app = new Vue({
             let form_data = {};
             form_data['city_population'] = this.city_population.toString();
             form_data['mask_politic'] = this.mask_politic.toString();
-            console.log(form_data);
+            form_data['desired_mask_number'] = this.desired_mask_number.toString();
+            form_data['desired_date'] = this.desired_date.toString();
+            form_data['nb_mask_per_person'] = this.nb_mask_per_person.toString();
+            form_data['mask_market_cost'] = this.mask_market_cost.toString();
+            form_data['mask_local_cost'] = this.mask_local_cost.toString();
+            form_data['startup_delay'] = this.startup_delay.toString();
             $.ajax({
                 url: '/reference/insert-reference',
                 data: 'form_data='+JSON.stringify(form_data),
@@ -53,6 +58,10 @@ let app = new Vue({
                     alert(data);
                 }
             });
+        },
+
+        set_reference_data: function(ref_tag){
+            
         }
     },
     computed: {
