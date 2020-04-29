@@ -31,7 +31,7 @@ let app = new Vue({
         // Parameters
         prod_time_centralized: 4*3600,   // In seconds
         prod_time_semi_centralized: 1.5*3600,   // In seconds
-        production_time_per_machine: 2 * 60, // In seconds
+        production_time_per_machine: 400, // In seconds
         // Variables
         sewing_machine_number_estimation: '1',
         sewing_machine_number: 0,
@@ -268,8 +268,11 @@ let app = new Vue({
         cutting_people: function(){
             return Math.ceil(0.3 * this.sewing_machine_number);
         },
-        scisors_and_iron_number: function(){
+        scisors_number: function(){
             return Math.ceil(0.3 * this.sewing_machine_number);
+        },
+        iron_number: function(){
+            return Math.ceil(0.2 * this.sewing_machine_number);
         },
         packing_people: function(){
             return Math.ceil(0.1 * this.sewing_machine_number);
