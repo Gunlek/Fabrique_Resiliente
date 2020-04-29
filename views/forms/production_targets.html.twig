@@ -13,6 +13,8 @@
                     <option value="0.8">Recommandé</option>
                     <option value="0.6">Libre</option>
                 </select>
+
+                <button type="button" @click='get_reference_data()'>Save</button>
             </div>
 
             <p>Nous recommandons la distribution de <strong class="tooltip">${recommended_mask_number}<span class="tooltiptext">Tooltip text</span></strong> masques pour votre commune afin de pouvoir fournir 10 masques barrières par personne.</p>

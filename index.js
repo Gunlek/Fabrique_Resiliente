@@ -2,7 +2,11 @@ let express = require('express');
 let app = express();
 
 app.use(express.static("statics/"));
-require('dotenv').config()
+require('dotenv').config();
+
+let reference_module = require('./src/reference.js');
+
+app.use('/reference', reference_module);
 
 /**
  * Handle the main route of the website

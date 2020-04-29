@@ -38,6 +38,23 @@ let app = new Vue({
         average_sewing_machine_per_people: 1/1000,
         allocated_area: 0,
     },
+    methods: {
+        get_reference_data: function(){
+            let form_data = {};
+            form_data['city_population'] = this.city_population.toString();
+            form_data['mask_politic'] = this.mask_politic.toString();
+            console.log(form_data);
+            $.ajax({
+                url: '/reference/insert-reference',
+                data: 'form_data='+JSON.stringify(form_data),
+                type: 'post',
+                content: 'json',
+                success: function(data){
+                    alert(data);
+                }
+            });
+        }
+    },
     computed: {
         recommended_mask_number: function(){
             return this.nb_mask_per_person * this.city_population * parseFloat(this.mask_politic);
