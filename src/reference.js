@@ -22,4 +22,16 @@ router.post('/insert-reference', urlencoded, async (req, res) => {
     res.send("success");
 });
 
+router.get('/get-reference', urlencoded, async (req, res) => {
+    let ref_tag = req.query.ref_tag; // TODO: Generate ref tag
+    
+    let db = await dbPromise;
+    let results = await db.get('SELECT * FROM reference WHERE ref_tag=?', [ref_tag]);
+    console.log(results);
+    if (results==undefined) {res.send("Error");}
+    else {res.send( results.ref_json );}
+}
+
+);
+
 module.exports = router;
