@@ -219,7 +219,7 @@ let app = new Vue({
             return this.desired_mask_number - this.possible_semi_centralized_production_in_time;
         },
         amortization: function(){
-            return 150 / (3600/this.production_time_per_machine);
+            return Math.ceil( 150 / (3600/this.production_time_per_machine) );
         },
 
         /*
