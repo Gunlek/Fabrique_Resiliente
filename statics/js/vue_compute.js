@@ -31,7 +31,7 @@ let app = new Vue({
         // Parameters
         prod_time_centralized: 4*3600,   // In seconds
         prod_time_semi_centralized: 1.5*3600,   // In seconds
-        production_time_per_machine: 2 * 60, // In seconds
+        production_time_per_machine: 400, // In seconds
         // Variables
         sewing_machine_number_estimation: '1',
         sewing_machine_number: 0,
@@ -171,10 +171,10 @@ let app = new Vue({
             return Math.floor(this.city_population * this.average_sewing_machine_per_people);
         },
         local_size_in_square_meter_centralized_model: function(){
-            return Math.ceil(6 * 1.3 * this.sewing_machine_number);
+            return Math.ceil(8 * 1.3 * this.sewing_machine_number);
         },
         local_size_in_square_meter_semi_centralized_model: function(){
-            return Math.ceil(6 * 0.3 * this.sewing_machine_number);
+            return Math.ceil(8 * 0.3 * this.sewing_machine_number);
         },
         computed_dayli_production_centralized: function(){
             return this.sewing_machine_number * this.prod_time_centralized / this.production_time_per_machine;
@@ -217,7 +217,7 @@ let app = new Vue({
             return this.desired_mask_number - this.possible_semi_centralized_production_in_time;
         },
         amortization: function(){
-            return 150 / (3600/this.production_time_per_machine);
+            return Math.ceil( 150 / (3600/this.production_time_per_machine) );
         },
 
         /*
@@ -266,8 +266,11 @@ let app = new Vue({
         cutting_people: function(){
             return Math.ceil(0.3 * this.sewing_machine_number);
         },
-        scisors_and_iron_number: function(){
+        scisors_number: function(){
             return Math.ceil(0.3 * this.sewing_machine_number);
+        },
+        iron_number: function(){
+            return Math.ceil(0.2 * this.sewing_machine_number);
         },
         packing_people: function(){
             return Math.ceil(0.1 * this.sewing_machine_number);
