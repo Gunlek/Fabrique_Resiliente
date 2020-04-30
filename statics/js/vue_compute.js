@@ -80,40 +80,38 @@ let app = new Vue({
         },
 
         set_reference_data: function(){
+            let super_desc = this;
             $.ajax({
                 url: '/reference/get-reference',
-                data: 'ref_tag='+this.ref_tag,
+                data: 'ref_tag='+super_desc.ref_tag,
                 type: 'get',
                 content: 'json',
                 success: function(data){
-                    alert(data);
-                    console.log(data);
                     let form_data = JSON.parse(data);
-                    this.city_population = form_data['city_population'];
-                    this.mask_politic = form_data['mask_politic'];
-                    this.desired_mask_number = form_data['desired_mask_number'];
-                    this.desired_date = form_data['desired_date'];
-                    this.nb_mask_per_person = form_data['nb_mask_per_person'];
-                    this.mask_market_cost = form_data['mask_market_cost'];
-                    this.mask_local_cost = form_data['mask_local_cost'];
-                    this.startup_delay = form_data['startup_delay'];
+                    super_desc.city_population = parseInt(form_data['city_population']);
+                    super_desc.mask_politic = parseFloat(form_data['mask_politic']);
+                    super_desc.desired_mask_number = parseInt(form_data['desired_mask_number']);
+                    super_desc.desired_date = form_data['desired_date'];
+                    super_desc.nb_mask_per_person = parseInt(form_data['nb_mask_per_person']);
+                    super_desc.mask_market_cost = parseFloat(form_data['mask_market_cost']);
+                    super_desc.mask_local_cost = parseFloat(form_data['mask_local_cost']);
+                    super_desc.startup_delay = parseInt(form_data['startup_delay']);
                     
-                    this.sewing_machine_number_estimation = form_data['sewing_machine_number_estimation'];
-                    this.sewing_machine_number = form_data['sewing_machine_number'];
-                    this.average_sewing_machine_per_people = form_data['average_sewing_machine_per_people'];
-                    this.computed_sewing_machine_in_city = form_data['computed_sewing_machine_in_city'];
-                    this.allocated_area = form_data['allocated_area'];
-                    this.prod_time_centralized_hours = form_data['prod_time_centralized_hours'];
-                    this.prod_time_semi_centralized_hours = form_data['prod_time_semi_centralized_hours'];
-                    this.production_time_per_machine = form_data['production_time_per_machine'];
-                    this.layer_number = form_data['layer_number'];
-                    this.tissue_per_layer = form_data['tissue_per_layer'];
-                    this.elastic_per_mask = form_data['elastic_per_mask'];
-                    this.plastic_sleeve_length_per_pocket = form_data['plastic_sleeve_length_per_pocket'];
-                    this.mask_per_pocket = form_data['mask_per_pocket'];
-                    this.elastic_cost_per_unit = form_data['elastic_cost_per_unit'];
-                    this.tissue_cost_per_square_meter = form_data['tissue_cost_per_square_meter'];
-                    this.plastic_sleeve_cost_per_meter = form_data['plastic_sleeve_cost_per_meter'];
+                    super_desc.sewing_machine_number_estimation = parseInt(form_data['sewing_machine_number_estimation']);
+                    super_desc.sewing_machine_number = parseInt(form_data['sewing_machine_number']);
+                    super_desc.average_sewing_machine_per_people = parseFloat(form_data['average_sewing_machine_per_people']);
+                    super_desc.allocated_area = parseFloat(form_data['allocated_area']);
+                    super_desc.prod_time_centralized_hours = form_data['prod_time_centralized_hours'];
+                    super_desc.prod_time_semi_centralized_hours = form_data['prod_time_semi_centralized_hours'];
+                    super_desc.production_time_per_machine = form_data['production_time_per_machine'];
+                    super_desc.layer_number = form_data['layer_number'];
+                    super_desc.tissue_per_layer = form_data['tissue_per_layer'];
+                    super_desc.elastic_per_mask = form_data['elastic_per_mask'];
+                    super_desc.plastic_sleeve_length_per_pocket = form_data['plastic_sleeve_length_per_pocket'];
+                    super_desc.mask_per_pocket = form_data['mask_per_pocket'];
+                    super_desc.elastic_cost_per_unit = form_data['elastic_cost_per_unit'];
+                    super_desc.tissue_cost_per_square_meter = form_data['tissue_cost_per_square_meter'];
+                    super_desc.plastic_sleeve_cost_per_meter = form_data['plastic_sleeve_cost_per_meter'];
                 }
             });
         }

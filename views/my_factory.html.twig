@@ -165,9 +165,22 @@
                 </table>
             </div>
         </div>
+        <br/><br/>
+
+        <div class="row">
+            <div class="col-3">
+                <input type="text" v-model="ref_tag" placeholder="Votre référence de dossier">
+            </div>
+            <div class="col-1"></div>
+            <div class="col-3">
+                <button type="button" @click="set_reference_data()" class="btn btn-blue content-fluid">Charger le dossier <i class="fas fa-download"></i></button>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-4">
+                <button type="button" @click='get_reference_data()' class="btn btn-green content-fluid">Sauvegarder <i class="far fa-save"></i></button>
+            </div>
+        </div>
     </div>
-    <input type="text" v-model="ref_tag"> 
-    <button type="button" @click="set_reference_data()"> Charger le dossier </button>
     <br/><br/>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

@@ -4,17 +4,15 @@
             <h2>Objectifs de production</h2>
             <div class="form-group">
                 <label>Combien d’habitant y a-t-il dans votre commune ? </label>
-                <input type="number" v-model="city_population" />
+                <input type="number" v-model="city_population" name="city_population"/>
             </div>
             <div class="form-group">
                 <label>Souhaitez-vous rendre la port du masque:</label>
-                <select v-model="mask_politic">
+                <select v-model="mask_politic" name="mask_politic">
                     <option value="1">Obligatoire</option>
                     <option value="0.8">Recommandé</option>
                     <option value="0.6">Libre</option>
                 </select>
-
-                <button type="button" @click='get_reference_data()'>Save</button>
             </div>
 
             <p>Nous recommandons la distribution de <strong class="tooltip">${recommended_mask_number}<span class="tooltiptext">Tooltip text</span></strong> masques pour votre commune afin de pouvoir fournir 10 masques barrières par personne.</p>
@@ -22,11 +20,11 @@
 
             <div class="form-group">
                 <label>Combien de masque souhaitez-vous vous procurer ?</label>
-                <input type="text" v-model="desired_mask_number" />
+                <input type="text" v-model="desired_mask_number" name="desired_mask_number"/>
             </div>
             <div class="form-group">
                 <label>A quelle date souhaitez-vous les avoirs à disposition ?  </label>
-                <input type="text" v-model="desired_date" placeholder="jj/mm/yyyy">
+                <input type="text" v-model="desired_date" name="desired_date" placeholder="jj/mm/yyyy">
             </div>
             
             <p>A cette date, pour atteindre votre objectif, il vous faut une production journalière de: <strong class="tooltip">${computed_masks_per_day}<span class="tooltiptext">Tooltip text</span></strong> masques par jour</p>
@@ -37,19 +35,19 @@
             <form>
                 <div class="form-group">
                     <label>Nombre de masques par personnes:</label>
-                    <input type="number" v-model="nb_mask_per_person" step="any"/>
+                    <input type="number" v-model="nb_mask_per_person" name="nb_mask_per_person" step="any"/>
                 </div>
                 <div class="form-group">
                     <label>Prix d'un masque en tissu sur le marché:</label>
-                    <input type="number" v-model="mask_market_cost" step="any"/>
+                    <input type="number" v-model="mask_market_cost" name="mask_market_cost" step="any"/>
                 </div>
                 <div class="form-group">
                     <label>Prix d'un masque en tissu fabriqué:</label>
-                    <input type="number" v-model="mask_local_cost" step="any"/>
+                    <input type="number" v-model="mask_local_cost" name="mask_local_cost" step="any"/>
                 </div>
                 <div class="form-group">
                     <label>Délai de démarrage de production (jours):</label>
-                    <input type="number" v-model="startup_delay" step="1"/>
+                    <input type="number" v-model="startup_delay" name="startup_delay" step="1"/>
                 </div>
             </form>
         </div>
