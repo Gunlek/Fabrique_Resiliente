@@ -16,3 +16,6 @@ Application Web en Node.JS avec des inclusions Vue.JS pour les éléments de cal
 - Fabien AUBRET
     - Responsable développement informatique
     - fabien.aubret@gadz.org
+- Grégoire NIAU
+    - Chargé développement
+    - gregoire.niau@gadz.org
