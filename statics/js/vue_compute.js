@@ -124,7 +124,7 @@ let app = new Vue({
             return this.mask_market_cost * this.recommended_mask_number;
         },
         difference_between_local_and_market: function() {
-            return this.recommended_mask_market_cost*this.desired_mask_number - this.total_production_cost;
+            return this.mask_market_cost*this.desired_mask_number - this.total_production_cost;
         },
         difference_between_local_and_market_per_mask: function() {
             return this.difference_between_local_and_market / this.recommended_mask_number;
@@ -191,13 +191,13 @@ let app = new Vue({
             }
         },
         extended_days_centralized_production: function(){
-            return Math.ceil(this.desired_mask_number / (this.computed_dayli_production_centralized)) - this.number_of_days_between_now_and_desired + parseInt(this.startup_delay);
+            return Math.ceil(this.desired_mask_number / (this.computed_dayli_production_centralized)) - this.number_of_days_between_now_and_desired + parseInt(this.startup_delay) > 0 ? Math.ceil(this.desired_mask_number / (this.computed_dayli_production_centralized)) - this.number_of_days_between_now_and_desired + parseInt(this.startup_delay) : 0;
         },
         possible_centralized_production_in_time: function(){
             return this.computed_dayli_production_centralized * (this.number_of_days_between_now_and_desired - parseInt(this.startup_delay))
         },
         buy_need_centralized_production: function(){
-            return this.desired_mask_number - this.possible_centralized_production_in_time;
+            return this.desired_mask_number - this.possible_centralized_production_in_time > 0 ? this.desired_mask_number - this.possible_centralized_production_in_time : 0;
         },
         prod_time_semi_centralized_hours: {
             get: function(){
@@ -211,13 +211,13 @@ let app = new Vue({
             return this.sewing_machine_number * this.prod_time_semi_centralized / this.production_time_per_machine;
         },
         extended_days_semi_centralized_production: function(){
-            return Math.ceil(this.desired_mask_number / (this.computed_dayli_production_semi_centralized)) - this.number_of_days_between_now_and_desired + parseInt(this.startup_delay);
+            return Math.ceil(this.desired_mask_number / (this.computed_dayli_production_semi_centralized)) - this.number_of_days_between_now_and_desired + parseInt(this.startup_delay) > 0 ? Math.ceil(this.desired_mask_number / (this.computed_dayli_production_semi_centralized)) - this.number_of_days_between_now_and_desired + parseInt(this.startup_delay) : 0;
         },
         possible_semi_centralized_production_in_time: function(){
             return this.computed_dayli_production_semi_centralized * (this.number_of_days_between_now_and_desired - parseInt(this.startup_delay))
         },
         buy_need_semi_centralized_production: function(){
-            return this.desired_mask_number - this.possible_semi_centralized_production_in_time;
+            return this.desired_mask_number - this.possible_semi_centralized_production_in_time > 0 ? this.desired_mask_number - this.possible_semi_centralized_production_in_time : 0;
         },
         amortization: function(){
             return Math.ceil( 150 / (3600/this.production_time_per_machine) );
