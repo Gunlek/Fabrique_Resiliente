@@ -11,7 +11,7 @@ let dbPromise = sqlite.open('./database/database.sqlite', { Promise });
 
 
 router.post('/insert-reference', urlencoded, async (req, res) => {
-    let ref_tag = "azerty"; // TODO: Generate ref tag
+    let ref_tag = req.body.ref_tag; // TODO: Generate ref tag
 
     let ref_data = req.body.form_data;
     

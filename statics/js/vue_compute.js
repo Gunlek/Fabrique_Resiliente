@@ -42,6 +42,7 @@ let app = new Vue({
     },
     methods: {
         get_reference_data: function(){
+            let super_this = this;
             let form_data = {};
             form_data['city_population'] = this.city_population.toString();
             form_data['mask_politic'] = this.mask_politic.toString();
@@ -70,11 +71,10 @@ let app = new Vue({
             form_data['plastic_sleeve_cost_per_meter'] = this.plastic_sleeve_cost_per_meter.toString();
             $.ajax({
                 url: '/reference/insert-reference',
-                data: 'form_data='+JSON.stringify(form_data),
+                data: 'form_data='+JSON.stringify(form_data)+'&ref_tag='+super_this.ref_tag,
                 type: 'post',
                 content: 'json',
                 success: function(data){
-                    alert(data);
                 }
             });
         },
