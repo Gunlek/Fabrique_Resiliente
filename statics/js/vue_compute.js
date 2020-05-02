@@ -124,7 +124,7 @@ let app = new Vue({
             return this.mask_market_cost * this.recommended_mask_number;
         },
         difference_between_local_and_market: function() {
-            return this.recommended_mask_market_cost - this.total_production_cost;
+            return this.recommended_mask_market_cost*this.desired_mask_number - this.total_production_cost;
         },
         difference_between_local_and_market_per_mask: function() {
             return this.difference_between_local_and_market / this.recommended_mask_number;
