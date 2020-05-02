@@ -126,6 +126,9 @@ let app = new Vue({
         difference_between_local_and_market: function() {
             return this.recommended_mask_market_cost - this.total_production_cost;
         },
+        difference_between_local_and_market_per_mask: function() {
+            return this.difference_between_local_and_market / this.recommended_mask_number;
+        },
 
         number_of_days_between_now_and_desired: function(){
             let desired_date = new Date(parseInt(this.desired_date_year_str), parseInt(this.desired_date_month_str)-1, parseInt(this.desired_date_day_str))
@@ -278,5 +281,22 @@ let app = new Vue({
         visor_quantity: function(){
             return this.volunteers * 1.5;
         }
+    },
+    mounted: function(){
+        let super_this = this;
+        var datepicker = new tui.DatePicker('#wrapper', {
+            date: new Date(),
+            input: {
+                element: '#date-input',
+                format: 'dd/MM/yyyy'
+            }
+        });
+        datepicker.on('change', function() {
+            var newDate = datepicker.getDate();
+            super_this.desired_date_day_str = newDate.getDate().toString();
+            super_this.desired_date_month_str = (newDate.getMonth()-1) < 10 ? "0"+(newDate.getMonth()-1).toString() : (newDate.getMonth()-1).toString();
+            super_this.desired_date_year_str = newDate.getFullYear().toString();
+            super_this.desired_date = super_this.desired_date_day_str + "/" + super_this.desired_date_month_str + "/" + super_this.desired_date_year_str;
+        });
     }
 });

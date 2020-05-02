@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <p>Si vous constatez que vous n'avez pas assez de machine à coudre pour atteindre vos objectifs, vous pouvez considérer ceci:</p>
-                <p>Une machine à coudre coûte environ 150 euros. Pour chaque masque fait avec cette machine, vous économisez <strong class="tooltip">${difference_between_local_and_market}<span class="tooltiptext">Tooltip Text</span></strong> euros. En <strong class="tooltip">${amortization}<span class="tooltiptext">Tooltip Text</span></strong> heures de fonctionnement, vous avez rentabilisé votre machine. Attention, le temps de livraison de la machine peut être assez long.</p>
+                <p>Une machine à coudre coûte environ 150 euros. Pour chaque masque fait avec cette machine, vous économisez <strong class="tooltip">${difference_between_local_and_market_per_mask}<span class="tooltiptext">Tooltip Text</span></strong> euros. En <strong class="tooltip">${amortization}<span class="tooltiptext">Tooltip Text</span></strong> heures de fonctionnement, vous avez rentabilisé votre machine. Attention, le temps de livraison de la machine peut être assez long.</p>
                 <p>Il est également possible de faire une combinaison des deux avec une partie de la production dans un local et l'autre partie chez des particuliers qui ont une machine à coudre.</p>
                 <div class="form-group">
                     <label>Quel est la surface du local que vous pouvez mettre à disposition ?</label>
@@ -63,7 +63,7 @@
                     <input type="number" v-model="production_time_per_machine" step="any"/>
                 </div>
                 <hr>
-                <div class="form-group">
+                <!--<div class="form-group">
                     <label>Couches de tissu par masque:</label>
                     <input type="number" v-model="layer_number"/>
                 </div>
@@ -83,7 +83,7 @@
                     <label>Nombre de masque par paquet:</label>
                     <input type="number" v-model="mask_per_pocket"/>
                 </div>
-                <hr>
+                <hr>-->
                 <div class="form-group">
                     <label>Coût de l'élastique (au mètre):</label>
                     <input type="number" v-model="elastic_cost_per_unit" step="any"/>

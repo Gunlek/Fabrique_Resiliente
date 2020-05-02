@@ -198,13 +198,13 @@ visibility: visible;
 /*
  * Table design
  */
-table {
+.table {
     border-collapse: collapse;
     display: block;
     width: 100%;
     padding: 0 !important;
 }
-table tr td {
+.table tr td {
     border: 1px solid #333;
     margin: 0 0;
     padding: 5px;

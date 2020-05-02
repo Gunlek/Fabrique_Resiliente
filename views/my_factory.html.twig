@@ -14,7 +14,7 @@
                 <h2>Production pour une fabrique de ${allocated_area} m² avec ${sewing_machine_number} machines à coudre à disposition</h2>
             </div>
         </div>
-        <table>
+        <table class="table">
             <tr>
                 <td></td>
                 <td>Centralisé</td>
@@ -99,7 +99,7 @@
             </div>
 
             <div class="col-9 table-content">
-                <table>
+                <table class="table">
                     <tr>
                         <td>Nombre de personnes à la découpe et au pliage</td>
                         <td>${cutting_people}</td>
@@ -107,7 +107,7 @@
 
                     <tr>
                         <td>Ciseaux à tissu</td>
-                        <td>${scisors_number}</td>
+                        <td><!-- ${scisors_number} -->A définir localement</td>
                     </tr>
 
                     <tr>
@@ -123,7 +123,7 @@
             </div>
 
             <div class="col-9 table-content">
-                <table>
+                <table class="table">
                     <tr>
                         <td>Nombre de personnes au conditionnement</td>
                         <td>${packing_people}</td>
@@ -147,7 +147,7 @@
             </div>
 
             <div class="col-9 table-content">
-                <table>
+                <table class="table">
                     <tr>
                         <td>Marquage au sol</td>
                         <td>A définir localement</td>
@@ -183,7 +183,8 @@
     </div>
     <br/><br/>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+<script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="/js/vue_compute.js"></script>
 {% endblock %}

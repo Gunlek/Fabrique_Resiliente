@@ -15,7 +15,7 @@
                 </select>
             </div>
 
-            <p>Nous recommandons la distribution de <strong class="tooltip">${recommended_mask_number}<span class="tooltiptext">Tooltip text</span></strong> masques pour votre commune afin de pouvoir fournir 10 masques barrières par personne.</p>
+            <p>Nous recommandons la distribution de <strong class="tooltip">${recommended_mask_number}<span class="tooltiptext">Tooltip text</span></strong> masques pour votre commune afin de pouvoir fournir ${nb_mask_per_person} masques barrières par personne.</p>
             <p>Vous procurer <strong class="tooltip">${recommended_mask_number}<span class="tooltiptext">Tooltip text</span></strong> masques sur le marché coûterai environ <strong class="tooltip">${recommended_mask_market_cost}€<span class="tooltiptext">Tooltip text</span></strong>. Un masque de la fabrique coûte environ <strong class="tooltip">${mask_local_cost}<span class="tooltiptext">Tooltip text</span></strong> euros. Produire vos masques localement permettrait d'économiser environ <strong class="tooltip">${difference_between_local_and_market}€<span class="tooltiptext">Tooltip text</span></strong></p>
 
             <div class="form-group">
@@ -24,10 +24,14 @@
             </div>
             <div class="form-group">
                 <label>A quelle date souhaitez-vous les avoirs à disposition ?  </label>
-                <input type="text" v-model="desired_date" name="desired_date" placeholder="jj/mm/yyyy">
+                <div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+                    <input type="text" v-model="desired_date" id="date-input" aria-label="Date-Time">
+                    <span class="tui-ico-date"></span>
+                </div>
+                <div id="wrapper" style="margin-top: -1px;"></div>
             </div>
             
-            <p>A cette date, pour atteindre votre objectif, il vous faut une production journalière de: <strong class="tooltip">${computed_masks_per_day}<span class="tooltiptext">Tooltip text</span></strong> masques par jour</p>
+            <p>En comptant ${startup_delay} jours pour mettre en place votre production, vous devez produire <strong class="tooltip">${computed_masks_per_day}<span class="tooltiptext">Tooltip text</span></strong> masques par jour pour atteindre votre objectif</p>
         </div>
 
         <div class="col-4" style="border-left: 1px solid #333; padding-left: 10px;">
