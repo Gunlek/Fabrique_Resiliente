@@ -102,6 +102,72 @@ input[type="text"]:focus, input[type="number"]:focus, select:focus
 }
 
 /*
+ * Clickable components
+ */
+
+.card.clickable:hover
+{
+    cursor: pointer;
+    background-color: rgba(33, 33, 33, 0.1);
+    transition: 0.3s background-color;
+}
+li
+{
+    background-color: none;
+    transition: 0.3s background-color;
+}
+li.clickable:hover
+{
+    cursor: pointer;
+    background-color: rgba(33, 33, 33, 0.1);
+    transition: 0.3s background-color;
+}
+.card[selected]
+{
+    background-color: rgba(33, 33, 33, 0.1);
+}
+li[selected]
+{
+    background-color: rgba(33, 33, 33, 0.1);
+}
+
+/*
+ * Tabs design
+ */
+.tabs .tabs-menu
+{
+    padding-right: 0;
+}
+
+.tabs .tabs-menu ul
+{
+    list-style: none;
+    margin: 0 0;
+    padding: 0 0;
+}
+.tabs .tabs-menu ul li
+{
+    height: 30px;
+    text-align: left;
+    line-height: 30px;
+    margin-right: 20px;
+    margin: 10px 20px 10px 0;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.tabs .tabs-menu ul li[selected]
+{
+    background-color: rgba(33, 33, 33, 0.1);
+    margin-right: 0px;
+}
+
+.tabs .tabs-content
+{
+    border: 1px solid black;
+}
+
+/*
  * Tooltip
  */
 .tooltip {
@@ -146,6 +212,7 @@ visibility: visible;
     font-family: sans-serif;
     background-color: white;
     padding: 20px;
+    transition: 0.3s background-color;
 }
 .card-height-1 {
     box-shadow: 3px 3px 5px rgba(33, 33, 33, 0.5);
