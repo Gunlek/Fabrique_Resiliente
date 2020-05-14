@@ -47,7 +47,27 @@
                 </div>
                 <div v-show="selected_tab==1">Semi-centralisé</div>
                 <div v-show="selected_tab==2">centralisé</div>
-                <div v-show="selected_tab==3">masques</div>
+
+                <!-- masques-->
+                <div v-show="selected_tab==3">Pour qu’un masque soit efficace il faut au moins respecter ces deux critères :
+                    <ul>
+                        <li>Il faut respecter les specifications AFNOR (c’est la manière dont le
+                            masque est cousu)</li>
+                        <li>Le tissu utilisé doit être certifié. La Direction Générale des
+                            Armées (DGA) certifie les tissus qui sont efficaces pour filtrer
+                            les particules.</li>
+                        <li>Différents sites décrivent la fabrication d'un masque respectant les spécifications AFNOR
+                            <ul>
+                                <li><a href="https://masques-
+                                    barrieres.afnor.org/les-informations-essentielles">https://masques-
+                                    barrieres.afnor.org/les-informations-essentielles</a></li>
+                                <li><a href="https://www.atelierdelacreation.com/blog/42-tuto-couture-
+                                    coudre-un-masque-de-protection">https://www.atelierdelacreation.com/blog/42-tuto-couture-
+                                    coudre-un-masque-de-protection</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
