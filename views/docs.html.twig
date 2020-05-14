@@ -45,8 +45,21 @@
                         </div>
                     </div>
                 </div>
-                <div v-show="selected_tab==1">Semi-centralisé</div>
-                <div v-show="selected_tab==2">centralisé</div>
+                <!-- semi-centralisé-->
+                <div v-show="selected_tab==1">Dans le processus semi-centralisé, les bénévoles
+                    récupèrent les patrons confectionnés dans la fabrique,
+                    ils cousent chez eux, puis ramènent les masques finis à
+                    la fabrique.
+                    <br>
+                    <iframe src="/pdf/semi_centralised.pdf#toolbar=0" width="100%" height="600px"></iframe>
+                </div>
+
+                <!-- entralisé-->
+                <div v-show="selected_tab==2">Dans le processus centralisé, toutes les étapes de
+                    confection sont faites dans la fabrique.
+                    <br>
+                    <iframe src="/pdf/centralised.pdf#toolbar=0" width="100%" height="600px"></iframe>
+                </div>
 
                 <!-- masques-->
                 <div v-show="selected_tab==3">Pour qu’un masque soit efficace il faut au moins respecter ces deux critères :
