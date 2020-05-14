@@ -18,46 +18,33 @@
                     <li class="clickable" @click="change_tab(1)" :selected="selected_tab==1 ? true : false">Processus semi-centralisé</li>
                     <li class="clickable" @click="change_tab(2)" :selected="selected_tab==2 ? true : false">Processus centralisé</li>
                     <li class="clickable" @click="change_tab(3)" :selected="selected_tab==3 ? true : false">Fabrication d'un masque</li>
+                    <li class="clickable" @click="change_tab(4)" :selected="selected_tab==4 ? true : false">Gestion de la fabrique</li>
                 </ul>
             </div>
 
             <div class="col-9 tabs-content">
-                <div v-show="selected_tab==0">
-                    <div class="row">
-                        <div class="col-12" style="border: 1px solid black;">
-                            <h3>Lorem Ipsum</h3>
-                            <br/>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue.</p>
-                        </div>
-                    </div>
+
+                <!-- protocole sanitaire d'une fabrique-->
+                <div v-show="selected_tab==0">Afin d’éviter qu’une fabrique ne devienne un vecteur de
+                    transmission du virus, il est indispensable de respecter les
+                    règles sanitaires ci-dessous.
                     <br/>
-                    <div class="row">
-                        <div class="col-12" style="border: 1px solid black;">
-                            Document PDF / Excel / Word
-                        </div>
-                    </div>
-                    <br/>
-                    <div class="row">
-                        <div class="col-12" style="border: 1px solid black;">
-                            <h3>Lorem Ipsum</h3>
-                            <br/>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue.</p>
-                        </div>
-                    </div>
+                    <iframe src="/pdf/health_protocol.pdf#toolbar=0" width="100%" height="600px"></iframe>
                 </div>
+
                 <!-- semi-centralisé-->
                 <div v-show="selected_tab==1">Dans le processus semi-centralisé, les bénévoles
                     récupèrent les patrons confectionnés dans la fabrique,
                     ils cousent chez eux, puis ramènent les masques finis à
                     la fabrique.
-                    <br>
+                    <br/>
                     <iframe src="/pdf/semi_centralised.pdf#toolbar=0" width="100%" height="600px"></iframe>
                 </div>
 
-                <!-- entralisé-->
+                <!-- centralisé-->
                 <div v-show="selected_tab==2">Dans le processus centralisé, toutes les étapes de
                     confection sont faites dans la fabrique.
-                    <br>
+                    <br/>
                     <iframe src="/pdf/centralised.pdf#toolbar=0" width="100%" height="600px"></iframe>
                 </div>
 
@@ -80,6 +67,54 @@
                             </ul>
                         </li>
                     </ul>
+                </div>
+
+                <!-- Gestion de la fabrique -->
+                <div v-show="selected_tab==4">
+                    <div class="row">
+                        <div class="col-12" style="border: 1px solid black;">
+                            <h3>Protocoles des dons :</h3>
+                            <br/>
+                            <p><ul>
+                                <li><a href="/pdf/management/machine_donation.pdf">Don de machine</a></li>
+                                <li><a href="/pdf/management/tissue_donation.pdf">Don de tissu ou autre</a></li>
+                            </ul></p>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-12" style="border: 1px solid black;">
+                            <h3>Ouvrir la fabrique :</h3>
+                            <br/>
+                            <p><ul>
+                                <li><a href="/pdf/management/open_fabric_welcome.pdf">Ouverture acceuil</a></li>
+                                <li><a href="/pdf/management/open_fabric_relaxation_space.pdf">Ouverture space détente</a></li>
+                                <li><a href="/pdf/management/open_fabric_big_room.pdf">Ouverture grande salle</a></li>
+                            </ul></p>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-12" style="border: 1px solid black;">
+                            <h3>Fermer la fabrique :</h3>
+                            <br/>
+                            <p><ul>
+                                <li><a href="/pdf/management/close_welcome.pdf.pdf">Fermeture de l'acceuil</a></li>
+                                <li><a href="/pdf/management/close_relaxation_space.pdf.pdf">Fermeture space détente</a></li>
+                                <li><a href="/pdf/management/close_big_room.pdf">Fermeture grande salle</a></li>
+                                <li><a href="/pdf/management/close_SAS.pdf">Fermeture SAS de sortie</a></li>
+                                <li><a href="/pdf/management/close_WC.pdf">Fermeture WC</a></li>
+                            </ul></p>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-12" style="border: 1px solid black;">
+                            <h3>Pendant la journée :</h3>
+                            <br/>
+                            <iframe src="/pdf/during_day.pdf#toolbar=0" width="100%" height="300px"></iframe>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
