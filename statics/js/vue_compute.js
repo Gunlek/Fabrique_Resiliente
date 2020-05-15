@@ -1,3 +1,4 @@
+let today = new Date();
 let app = new Vue({
     el: '#compute_app',
     delimiters: ['${', '}'],
@@ -15,17 +16,17 @@ let app = new Vue({
 
         // First estimator
         // Parameters
-        nb_mask_per_person: 2,
+        nb_mask_per_person: 2,          // C1
         mask_market_cost: 3.5,          // This is the market cost of a mask
-        mask_local_cost: 1,
+        mask_local_cost: 1,             // E
         startup_delay: 2,
         // Variables
-        city_population: null,
-        mask_politic: 1,
+        city_population: null,      // A
+        mask_politic: 1,            // B
         desired_mask_number: null,
-        desired_date_day_str: '',
-        desired_date_month_str: '',
-        desired_date_year_str: '',
+        desired_date_day_str: today.getDate().toString(),
+        desired_date_month_str: (today.getMonth()+1).toString(),
+        desired_date_year_str: today.getFullYear().toString(),
 
         // Second estimator
         // Parameters
@@ -38,7 +39,7 @@ let app = new Vue({
         average_sewing_machine_per_people: 1/1000,
         allocated_area: 0,
 
-        ref_tag: null,
+        ref_tag: null
     },
     methods: {
         get_reference_data: function(){
@@ -117,9 +118,11 @@ let app = new Vue({
         }
     },
     computed: {
+        // C
         recommended_mask_number: function(){
             return this.nb_mask_per_person * this.city_population * parseFloat(this.mask_politic);
         },
+        // D
         recommended_mask_market_cost: function(){
             return this.mask_market_cost * this.recommended_mask_number;
         },
@@ -131,9 +134,9 @@ let app = new Vue({
         },
 
         number_of_days_between_now_and_desired: function(){
-            let desired_date = new Date(parseInt(this.desired_date_year_str), parseInt(this.desired_date_month_str)-1, parseInt(this.desired_date_day_str))
+            let desired_date_object = new Date(parseInt(this.desired_date_year_str), parseInt(this.desired_date_month_str)-1, parseInt(this.desired_date_day_str))
             let now_date = new Date();
-            let difference = Math.abs(desired_date - now_date);
+            let difference = Math.abs(desired_date_object - now_date);
             let diffDays = Math.ceil(difference / (1000 * 60 * 60 * 24));
             return diffDays;
         },
@@ -220,7 +223,8 @@ let app = new Vue({
             return this.desired_mask_number - this.possible_semi_centralized_production_in_time > 0 ? this.desired_mask_number - this.possible_semi_centralized_production_in_time : 0;
         },
         amortization: function(){
-            return Math.ceil( 150 / (3600/this.production_time_per_machine) );
+            console.log(this.production_time_per_machine);
+            return Math.ceil( 150 / (this.difference_between_local_and_market_per_mask*(3600/this.production_time_per_machine)) );
         },
 
         /*
@@ -284,17 +288,21 @@ let app = new Vue({
     },
     mounted: function(){
         let super_this = this;
+        let today = new Date();
         var datepicker = new tui.DatePicker('#wrapper', {
             date: new Date(),
             input: {
                 element: '#date-input',
                 format: 'dd/MM/yyyy'
-            }
+            },
+            selectableRanges: [
+                [today, new Date(today.getFullYear() + 10, today.getMonth(), today.getDate())]
+            ]
         });
         datepicker.on('change', function() {
             var newDate = datepicker.getDate();
             super_this.desired_date_day_str = newDate.getDate().toString();
-            super_this.desired_date_month_str = (newDate.getMonth()-1) < 10 ? "0"+(newDate.getMonth()-1).toString() : (newDate.getMonth()-1).toString();
+            super_this.desired_date_month_str = (newDate.getMonth()+1) < 10 ? "0"+(newDate.getMonth()+1).toString() : (newDate.getMonth()+1).toString();
             super_this.desired_date_year_str = newDate.getFullYear().toString();
             super_this.desired_date = super_this.desired_date_day_str + "/" + super_this.desired_date_month_str + "/" + super_this.desired_date_year_str;
         });
