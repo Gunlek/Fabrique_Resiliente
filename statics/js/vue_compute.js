@@ -200,7 +200,7 @@ let app = new Vue({
             return this.computed_dayli_production_centralized * (this.number_of_days_between_now_and_desired - parseInt(this.startup_delay))
         },
         buy_need_centralized_production: function(){
-            return this.desired_mask_number - this.possible_centralized_production_in_time > 0 ? this.desired_mask_number - this.possible_centralized_production_in_time : 0;
+            return Math.ceil(this.desired_mask_number - this.possible_centralized_production_in_time > 0 ? this.desired_mask_number - this.possible_centralized_production_in_time : 0);
         },
         prod_time_semi_centralized_hours: {
             get: function(){
@@ -220,7 +220,7 @@ let app = new Vue({
             return this.computed_dayli_production_semi_centralized * (this.number_of_days_between_now_and_desired - parseInt(this.startup_delay))
         },
         buy_need_semi_centralized_production: function(){
-            return this.desired_mask_number - this.possible_semi_centralized_production_in_time > 0 ? this.desired_mask_number - this.possible_semi_centralized_production_in_time : 0;
+            return Math.ceil(this.desired_mask_number - this.possible_semi_centralized_production_in_time > 0 ? this.desired_mask_number - this.possible_semi_centralized_production_in_time : 0);
         },
         amortization: function(){
             console.log(this.production_time_per_machine);
@@ -231,13 +231,13 @@ let app = new Vue({
          * Table details
          */
         volunteers: function(){
-            return 1.3 * this.sewing_machine_number;
+            return Math.ceil(1.3 * this.sewing_machine_number);
         },
         volunteers_in_workshop_centralized: function(){
-            return this.volunteers;
+            return Math.ceil(this.volunteers);
         },
         volunteers_in_workshop_semi_centralized: function(){
-            return 0.3 * this.sewing_machine_number;
+            return Math.ceil(0.3 * this.sewing_machine_number);
         },
         
         // Table 2
@@ -284,6 +284,13 @@ let app = new Vue({
         },
         visor_quantity: function(){
             return this.volunteers * 1.5;
+        },
+
+        required_area_size_centralized: function(){
+            return Math.ceil(6 * 1.3 * this.sewing_machine_number);
+        },
+        required_area_size_semi_centralized: function(){
+            return Math.ceil(6 * 0.3 * this.sewing_machine_number);
         }
     },
     mounted: function(){

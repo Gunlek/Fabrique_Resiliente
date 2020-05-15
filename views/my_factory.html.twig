@@ -11,7 +11,7 @@
     <div id="table" class="card card-height-1">
         <div class="row">
             <div class="col-12">
-                <h2>Production pour une fabrique de ${allocated_area} m² avec ${sewing_machine_number} machines à coudre à disposition</h2>
+                <h2>Production pour une fabrique avec ${sewing_machine_number} machines à coudre à disposition</h2>
             </div>
         </div>
         <table class="table">
@@ -22,7 +22,13 @@
             </tr>
 
             <tr>
-                <td>Production journalière</td>
+                <td>Taille du local nécessaire (m²)</td>
+                <td>${required_area_size_centralized}</td>
+                <td>${required_area_size_semi_centralized}</td>
+            </tr>
+
+            <tr>
+                <td>Production journalière (masques / jours)</td>
                 <td>${computed_dayli_production_centralized}</td>
                 <td>${computed_dayli_production_semi_centralized}</td>
             </tr>
