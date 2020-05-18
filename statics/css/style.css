@@ -93,6 +93,39 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*
+ * Content
+ */
+.content {
+    padding: 15px 25px;
+}
+
+.content h2 {
+    font-size: 30px;
+    font-family: Ubuntu;
+    font-weight: normal;
+}
+
+.content p {
+    font-size: 25px;
+    width: 75%;
+    font-family: Ubuntu;
+    text-align: left;
+}
+
+.content .vertical-align {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.content ul {
+    text-align: left;
+    width: 75%;
+    font-size: 25px;
+    font-family: Ubuntu;
+}
+
+/*
  * Box Layout
  */
 .box-layout {
@@ -332,6 +365,7 @@ visibility: visible;
 .col, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
     flex: auto;
     padding: 10px;
+    position: relative;
 }
 
 .col-1 {
