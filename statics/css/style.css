@@ -6,6 +6,11 @@
 
 */
 
+@font-face {
+    font-family: "Ubuntu";
+    src: url("/fonts/Ubuntu-Regular.ttf");
+}
+
 html, body {
     margin: 0 0;
     padding: 0 0;
@@ -18,15 +23,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .menu {
-    background-color: #3498db;
+    background-image: url('/img/bandeau.jpg');
     margin: 0 0;
     padding: 0 0;
-    height: 60px;
+    height: 150px;
     position: relative;
     left: 0;
     right: 0;
     top: 0;
     margin-bottom: 20px;
+}
+
+.menu .brand-image {
+    position: absolute;
+    left: 0;
+    top: -75%;
+    height: 250%;
 }
 
 .left-align {
@@ -48,18 +60,35 @@ h1, h2, h3, h4, h5, h6 {
 
 .menu ul li{
     margin: 0 0;
-    padding: 0 15;
     display: inline-block;
-    line-height: 60px;
-    color: #ecf0f1;
-    font-family: sans-serif;
-    font-weight: bold;
+    line-height: 150px;
+    font-size: 30px;
+    color: #333;
+    font-family: Ubuntu;
     transition: background-color 0.2s, color 0.2s;
 }
 
+.menu ul > a {
+    display: inline-block;
+    margin: 0 15px;
+    position: relative;
+}
+
+.menu ul > a .slider {
+    width: 0%;
+    display: block;
+    position: absolute;
+    bottom: 30%;
+    border-bottom: 3px solid #333;
+    transition: width 0.2s ease;
+}
+
+.menu ul > a:hover .slider {
+    width: 100%;
+    transition: width 0.2s ease;
+}
+
 .menu li:hover{
-    background-color: #2980b9;
-    color: #f1c40f;
     transition: background-color 0.2s, color 0.2s;
 }
 
