@@ -35,6 +35,10 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateX(-50%);
 }
 
+.tui-datepicker {
+    z-index: 10;
+}
+
 .menu {
     background-image: url('/img/bandeau.jpg');
     margin: 0 0;
@@ -288,6 +292,7 @@ visibility: visible;
     background-color: white;
     padding: 20px;
     transition: 0.3s background-color;
+    z-index: -10;
 }
 .card-height-1 {
     box-shadow: 3px 3px 5px rgba(33, 33, 33, 0.5);
