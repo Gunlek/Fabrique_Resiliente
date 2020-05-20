@@ -287,10 +287,10 @@ let app = new Vue({
         },
 
         required_area_size_centralized: function(){
-            return Math.ceil(6 * 1.3 * this.sewing_machine_number);
+            return Math.ceil(8 * 1.3 * this.sewing_machine_number);
         },
         required_area_size_semi_centralized: function(){
-            return Math.ceil(6 * 0.3 * this.sewing_machine_number);
+            return Math.ceil(8 * 0.3 * this.sewing_machine_number);
         }
     },
     mounted: function(){
