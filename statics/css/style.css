@@ -22,6 +22,19 @@ h1, h2, h3, h4, h5, h6 {
     color: #333;
 }
 
+.home-bg {
+    background-image: url('/img/fond.jpg');
+    background-repeat: repeat-y;
+    background-size: auto;
+}
+
+.title-underline-decoration {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .menu {
     background-image: url('/img/bandeau.jpg');
     margin: 0 0;
