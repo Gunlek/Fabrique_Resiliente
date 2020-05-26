@@ -1,103 +1,112 @@
-<form id="secondPartForm" class="card card-height-1">
-    <div class="row">
-        <div class="col-8">
-            <h2>Capacité de production</h2>
-            <br>
-            <form>
-                <div class="form-group">
-                    <label>Pouvez vous estimer le nombre de personnes ayant une machine à coudre dans votre commune ? </label>
-                    <input type="radio" name="sewing_estimation" v-model="sewing_machine_number_estimation" value="1" />Oui
-                    <input type="radio" name="sewing_estimation" v-model="sewing_machine_number_estimation" value="0" />Non
-                </div>
-                <div class="form-group" v-if="sewing_machine_number_estimation=='1'">
-                    <label>Votre estimation:</label>
-                    <input type="number" v-model="sewing_machine_number" />
-                </div>
-                <div class="form-group" v-if="sewing_machine_number_estimation=='0'">
-                    <label>Estimation automatique:</label><br/>
-                    <label>Machine par habitant (par défaut, 1 pour 1000):</label>
-                    <input type="number" v-model="average_sewing_machine_per_people" step="any"/><br/>
-                    <label>Machine(s) dans la ville: </label>
-                    <input type="number" v-model="computed_sewing_machine_in_city" disabled/>
-                    <p>Le nombre de machine à coudre est le principal facteur limitant de votre production à moyen terme. En général on compte entre une machine pour 500 habitants et une pour 1000.</p>
-                </div>
-
-                <p>Il y a deux méthodes de production possibles:</p>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="card card-height-2">
-                            {% include "forms/centralized_table.html.twig" %}
-                        </div>
+<form id="secondPartForm">
+    <div class="decorated-row" style="background-image: url('/img/calculette/cadre1.png');background-size: 100% 100%;">
+        <div class="row">
+            <div class="col-8 decorated-col">
+                <h2>Capacité de production</h2>
+                <br>
+                <form>
+                    <div class="form-group">
+                        <label>Pouvez vous estimer le nombre de personnes ayant une machine à coudre dans votre commune ? </label>
+                        <input type="radio" name="sewing_estimation" v-model="sewing_machine_number_estimation" value="1" />Oui
+                        <input type="radio" name="sewing_estimation" v-model="sewing_machine_number_estimation" value="0" />Non
+                    </div>
+                    <div class="form-group" v-if="sewing_machine_number_estimation=='1'">
+                        <label>Votre estimation:</label>
+                        <input type="number" v-model="sewing_machine_number" />
+                    </div>
+                    <div class="form-group" v-if="sewing_machine_number_estimation=='0'">
+                        <label>Estimation automatique:</label><br/>
+                        <label>Machine par habitant (par défaut, 1 pour 1000):</label>
+                        <input type="number" v-model="average_sewing_machine_per_people" step="any"/><br/>
+                        <label>Machine(s) dans la ville: </label>
+                        <input type="number" v-model="computed_sewing_machine_in_city" disabled/>
+                        <p>Le nombre de machine à coudre est le principal facteur limitant de votre production à moyen terme. En général on compte entre une machine pour 500 habitants et une pour 1000.</p>
                     </div>
 
-                    <div class="col-6">
-                        <div class="card card-height-2">
-                            {% include "forms/semi_centralized_table.html.twig" %}
+                    <p>Il y a deux méthodes de production possibles:</p>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="darken-card">
+                                {% include "forms/centralized_table.html.twig" %}
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="darken-card">
+                                {% include "forms/semi_centralized_table.html.twig" %}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <p>Si vous constatez que vous n'avez pas assez de machine à coudre pour atteindre vos objectifs, vous pouvez considérer ceci:</p>
-                <p>Une machine à coudre coûte environ 150 euros. Pour chaque masque fait avec cette machine, vous économisez <strong class="tooltip">${difference_between_local_and_market_per_mask}<span class="tooltiptext">Tooltip Text</span></strong> euros. En <strong class="tooltip">${amortization}<span class="tooltiptext">Tooltip Text</span></strong> heures de fonctionnement, vous avez rentabilisé votre machine. Attention, le temps de livraison de la machine peut être assez long.</p>
-                <p>Il est également possible de faire une combinaison des deux avec une partie de la production dans un local et l'autre partie chez des particuliers qui ont une machine à coudre.</p>
-                <div class="form-group">
-                    <label>Quel est la surface du local que vous pouvez mettre à disposition ?</label>
-                    <input type="number" v-model="allocated_area" />
-                </div>
-                <p>Lorsque des personnes sont réunies dans un local, il est en pratique difficile de faire respecter les règles de distanciation sociale et le port des visières. Nous vous recommandons vivement d'avoir une personne en charge de faire respecter les règles sanitaires sans quoi une fabrique pourrait devenir un vecteur de contamination. </p>
-                <p>Dans ce local, en admettant que vous ne mettez pas plus d'une personne pour 8m² (cf. protocole sanitaire), et que vous avez <strong class="tooltip">${sewing_machine_number}<span class="tooltiptext">Tooltip Text</span></strong> machines à coudre:</p>
-            </form>
+                </form>
+            </div>
+
+            <div class="col-4">
+                <h2>Paramètres</h2>
+                <form>
+                    <div class="form-group">
+                        <label>Heures de production en centralisé:</label>
+                        <input type="number" v-model="prod_time_centralized_hours" step="any"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Heures de production en semi-centralisé:</label>
+                        <input type="number" v-model="prod_time_semi_centralized_hours" step="any"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Temps de fabrication sur une machine (secondes):</label>
+                        <input type="number" v-model="production_time_per_machine" step="any"/>
+                    </div>
+                    <hr>
+                    <!--<div class="form-group">
+                        <label>Couches de tissu par masque:</label>
+                        <input type="number" v-model="layer_number"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Surface de tissu par couche (m²):</label>
+                        <input type="number" v-model="tissue_per_layer" step="any"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre d'élastiques par masques:</label>
+                        <input type="number" v-model="elastic_per_mask"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Longueur de gaine plastique par paquet (m):</label>
+                        <input type="number" v-model="plastic_sleeve_length_per_pocket" step="any"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre de masque par paquet:</label>
+                        <input type="number" v-model="mask_per_pocket"/>
+                    </div>
+                    <hr>-->
+                    <div class="form-group">
+                        <label>Coût de l'élastique (au mètre):</label>
+                        <input type="number" v-model="elastic_cost_per_unit" step="any"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Coût du tissu (au mètre carré):</label>
+                        <input type="number" v-model="tissue_cost_per_square_meter"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Coût des gaines plastiques (au mètre):</label>
+                        <input type="number" v-model="plastic_sleeve_cost_per_meter" step="any"/>
+                    </div>
+                </form>
+            </div>
         </div>
 
-        <div class="col-4" style="border-left: 1px solid #333; padding-left: 10px;">
-            <h2>Paramètres</h2>
-            <form>
-                <div class="form-group">
-                    <label>Heures de production en centralisé:</label>
-                    <input type="number" v-model="prod_time_centralized_hours" step="any"/>
-                </div>
-                <div class="form-group">
-                    <label>Heures de production en semi-centralisé:</label>
-                    <input type="number" v-model="prod_time_semi_centralized_hours" step="any"/>
-                </div>
-                <div class="form-group">
-                    <label>Temps de fabrication sur une machine (secondes):</label>
-                    <input type="number" v-model="production_time_per_machine" step="any"/>
-                </div>
-                <hr>
-                <!--<div class="form-group">
-                    <label>Couches de tissu par masque:</label>
-                    <input type="number" v-model="layer_number"/>
-                </div>
-                <div class="form-group">
-                    <label>Surface de tissu par couche (m²):</label>
-                    <input type="number" v-model="tissue_per_layer" step="any"/>
-                </div>
-                <div class="form-group">
-                    <label>Nombre d'élastiques par masques:</label>
-                    <input type="number" v-model="elastic_per_mask"/>
-                </div>
-                <div class="form-group">
-                    <label>Longueur de gaine plastique par paquet (m):</label>
-                    <input type="number" v-model="plastic_sleeve_length_per_pocket" step="any"/>
-                </div>
-                <div class="form-group">
-                    <label>Nombre de masque par paquet:</label>
-                    <input type="number" v-model="mask_per_pocket"/>
-                </div>
-                <hr>-->
-                <div class="form-group">
-                    <label>Coût de l'élastique (au mètre):</label>
-                    <input type="number" v-model="elastic_cost_per_unit" step="any"/>
-                </div>
-                <div class="form-group">
-                    <label>Coût du tissu (au mètre carré):</label>
-                    <input type="number" v-model="tissue_cost_per_square_meter"/>
-                </div>
-                <div class="form-group">
-                    <label>Coût des gaines plastiques (au mètre):</label>
-                    <input type="number" v-model="plastic_sleeve_cost_per_meter" step="any"/>
-                </div>
-            </form>
+        <div style="height: 75px;"></div>
+    </div>
+    
+    <div class="row decorated-row">
+        <div class="col-12">
+            <h2>Si vous constatez que vous n'avez pas assez de machine à coudre pour atteindre vos objectifs, vous pouvez considérer ceci:</h2>
+            <p style="width: 100%;">Une machine à coudre coûte environ 150 euros. Pour chaque masque fait avec cette machine, vous économisez <strong class="tooltip">${difference_between_local_and_market_per_mask}<span class="tooltiptext">Tooltip Text</span></strong> euros. En <strong class="tooltip">${amortization}<span class="tooltiptext">Tooltip Text</span></strong> heures de fonctionnement, vous avez rentabilisé votre machine. Attention, le temps de livraison de la machine peut être assez long.</p>
+            <p style="width: 100%;">Il est également possible de faire une combinaison des deux avec une partie de la production dans un local et l'autre partie chez des particuliers qui ont une machine à coudre.</p>
+            <div class="form-group">
+                <label>Quel est la surface du local que vous pouvez mettre à disposition ?</label>
+                <input type="number" v-model="allocated_area" />
+            </div>
+            <p style="width: 100%;">Lorsque des personnes sont réunies dans un local, il est en pratique difficile de faire respecter les règles de distanciation sociale et le port des visières. Nous vous recommandons vivement d'avoir une personne en charge de faire respecter les règles sanitaires sans quoi une fabrique pourrait devenir un vecteur de contamination. </p>
+            <p style="width: 100%;">Dans ce local, en admettant que vous ne mettez pas plus d'une personne pour 8m² (cf. protocole sanitaire), et que vous avez <strong class="tooltip">${sewing_machine_number}<span class="tooltiptext">Tooltip Text</span></strong> machines à coudre:</p>
         </div>
     </div>
 </form>

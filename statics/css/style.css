@@ -122,9 +122,8 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
 }
 
-.content p {
-    font-size: 25px;
-    width: 75%;
+.content p, .content label {
+    font-size: 20px;
     font-family: Ubuntu;
     text-align: left;
 }
@@ -208,6 +207,62 @@ li.clickable:hover
 li[selected]
 {
     background-color: rgba(33, 33, 33, 0.1);
+}
+
+/*
+ * Decorations
+ */
+.decorated-row {
+    padding: 20px 40px;
+}
+
+.decorated-row h2 {
+    color: #89275F;
+}
+
+.decorated-row .tui-datetime-input {
+    width: 100%;
+}
+
+.decorated-row .tui-datetime-input input {
+    text-align: center;
+    color: #89275F;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.decorated-row input[type="number"], .decorated-row input[type="text"], .decorated-row select {
+    background-color: transparent;
+    border: 2px solid #FFA300;
+    border-radius: 10px;
+    width: 100%;
+    display: block;
+}
+
+.decorated-row .darken-card {
+    background-color: rgba(33, 33, 33, 0.2);
+    font-size: 15px;
+}
+
+.decorated-row .darken-card p {
+    font-size: 15px;
+}
+
+.decorated-col {
+    padding: 0 20px !important;
+}
+
+.decorated-row button {
+    background-color: #FFA300;
+    border: none;
+    color: #333;
+    transition: background-color 0.2s;
+}
+
+.decorated-row button:hover {
+    background-color: rgb(212, 135, 0);
+    color: #333;
+    transition: background-color 0.2s;
 }
 
 /*
@@ -350,9 +405,19 @@ visibility: visible;
     display: block;
     width: 100%;
     padding: 0 !important;
+    border: 2px solid #89275F;
 }
-.table tr td {
-    border: 1px solid #333;
+.table-row {
+    border: 2px solid #89275F;
+}
+.sub-table {
+    border-collapse: collapse;
+    display: block;
+    width: 100%;
+    padding: 0 !important;
+}
+.table tr td, .sub-table tr td {
+    border: 1px solid #89275F;
     margin: 0 0;
     padding: 5px;
     width: 100%;
@@ -360,13 +425,14 @@ visibility: visible;
 }
 .table-desc
 {
-    border: 1px solid #333;
+    border: 1px solid #89275F;
     margin: 0 0;
     line-height: 100%;
 }
-.table-desc .h2
+.table-desc h2
 {
     margin: auto 0;
+    line-height: 40px;
 }
 .table-content{
     padding: 0 0 !important;

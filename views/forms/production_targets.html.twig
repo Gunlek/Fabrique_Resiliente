@@ -1,6 +1,6 @@
-<form id="firstPartForm" class="card card-height-1">
-    <div class="row">
-        <div class="col-8">
+<form id="firstPartForm">
+    <div class="row decorated-row" style="background-image: url('/img/calculette/cadre1.png');background-size: 100% 100%;">
+        <div class="col-8 decorated-col">
             <h2>Objectifs de production</h2>
             <div class="form-group">
                 <label>Combien d’habitant y a-t-il dans votre commune ? </label>
@@ -32,9 +32,11 @@
             </div>
             
             <p>En comptant ${startup_delay} jours pour mettre en place votre production, vous devez produire <strong class="tooltip">${computed_masks_per_day}<span class="tooltiptext">Tooltip text</span></strong> masques par jour pour atteindre votre objectif</p>
+
+            <div style="height: 75px;"></div>
         </div>
 
-        <div class="col-4" style="border-left: 1px solid #333; padding-left: 10px;">
+        <div class="col-4 decorated-col">
             <h2>Paramètres</h2>
             <form>
                 <div class="form-group">

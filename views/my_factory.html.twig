@@ -1,193 +1,199 @@
 {% extends "libs/template.html.twig" %}
 {% block content %}
-<div id="compute_app" class="box-layout">
-    {% include "forms/production_targets.html.twig" %}
+<div class="content home-bg">
+    <div id="compute_app" class="box-layout">
+        {% include "forms/production_targets.html.twig" %}
 
-    <br>
+        <br>
 
-    {% include "forms/production_capacity.html.twig" %}
+        {% include "forms/production_capacity.html.twig" %}
 
-    <br/>
-    <div id="table" class="card card-height-1">
-        <div class="row">
-            <div class="col-12">
-                <h2>Production pour une fabrique avec ${sewing_machine_number} machines à coudre à disposition</h2>
+        <br/>
+        <div id="table">
+            <div class="row">
+                <div class="col-12">
+                    <center style="position: relative;">
+                        <h2 style="color: #89275F;">Production pour une fabrique avec ${sewing_machine_number} machines à coudre à disposition</h2>
+                        <img src="/img/calculette/sous titre1.png" style="position: absolute;bottom: -20px;left: 50%;transform: translateX(-50%);width: 75%;"/>
+                    </center>
+                </div>
             </div>
+            <br/>
+            <table class="table">
+                <tr>
+                    <td></td>
+                    <td>Centralisé</td>
+                    <td>Semi-centralisé</td>
+                </tr>
+
+                <tr>
+                    <td>Taille du local nécessaire (m²)</td>
+                    <td>${required_area_size_centralized}</td>
+                    <td>${required_area_size_semi_centralized}</td>
+                </tr>
+
+                <tr>
+                    <td>Production journalière (masques / jours)</td>
+                    <td>${computed_dayli_production_centralized}</td>
+                    <td>${computed_dayli_production_semi_centralized}</td>
+                </tr>
+
+                <tr>
+                    <td>Nombre total de bénévoles</td>
+                    <td>${volunteers}</td>
+                    <td>${volunteers}</td>
+                </tr>
+
+                <tr>
+                    <td>Dont bénévoles dans le local</td>
+                    <td>${volunteers_in_workshop_centralized}</td>
+                    <td>${volunteers_in_workshop_semi_centralized}</td>
+                </tr>
+
+                <tr>
+                    <td>Nombre de masque manquants par rapport à l'objectif</td>
+                    <td>${buy_need_centralized_production}</td>
+                    <td>${buy_need_semi_centralized_production}</td>
+                </tr>
+
+                <tr>
+                    <td>Nombre de jours supplémentaires pour atteindre l'objectif</td>
+                    <td>${extended_days_centralized_production}</td>
+                    <td>${extended_days_semi_centralized_production}</td>
+                </tr>
+            </table>
         </div>
-        <table class="table">
-            <tr>
-                <td></td>
-                <td>Centralisé</td>
-                <td>Semi-centralisé</td>
-            </tr>
-
-            <tr>
-                <td>Taille du local nécessaire (m²)</td>
-                <td>${required_area_size_centralized}</td>
-                <td>${required_area_size_semi_centralized}</td>
-            </tr>
-
-            <tr>
-                <td>Production journalière (masques / jours)</td>
-                <td>${computed_dayli_production_centralized}</td>
-                <td>${computed_dayli_production_semi_centralized}</td>
-            </tr>
-
-            <tr>
-                <td>Nombre total de bénévoles</td>
-                <td>${volunteers}</td>
-                <td>${volunteers}</td>
-            </tr>
-
-            <tr>
-                <td>Dont bénévoles dans le local</td>
-                <td>${volunteers_in_workshop_centralized}</td>
-                <td>${volunteers_in_workshop_semi_centralized}</td>
-            </tr>
-
-            <tr>
-                <td>Nombre de masque manquants par rapport à l'objectif</td>
-                <td>${buy_need_centralized_production}</td>
-                <td>${buy_need_semi_centralized_production}</td>
-            </tr>
-
-            <tr>
-                <td>Nombre de jours supplémentaires pour atteindre l'objectif</td>
-                <td>${extended_days_centralized_production}</td>
-                <td>${extended_days_semi_centralized_production}</td>
-            </tr>
-        </table>
-    </div>
-    <br/><br/>
-    <div id="table" class="card card-height-1">
-        <div class="row">
-            <div class="col-12">
-                <h2>Matériel nécessaire pour un local de ${allocated_area} m² avec ${sewing_machine_number} machines à coudre à disposition avec pour objectif de produire ${desired_mask_number} masques en tissus</h2>
+        <br/><br/>
+        <div id="table">
+            <div class="row">
+                <div class="col-12">
+                    <center>
+                        <h2 style="color: #89275F;">Matériel nécessaire pour un local de ${allocated_area} m² avec ${sewing_machine_number} machines à coudre à disposition avec pour objectif de produire ${desired_mask_number} masques en tissus</h2>
+                    </center>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-3 table-desc">
-                <h2>Pour la couture</h2>
+            <div class="row table-row">
+                <div class="col-3 table-desc">
+                    <h2>Pour la couture</h2>
+                </div>
+
+                <div class="col-9 table-content">
+                    <table class="sub-table">
+                        <tr>
+                            <td>Nombre de personnes à la couture</td>
+                            <td>${sewing_machine_number}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Nombre de masques à produire</td>
+                            <td>${desired_mask_number}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Longueur totale d'élastique en m</td>
+                            <td>${elastic_quantity_for_production}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Longueur tissu en m (pour 1.5m de large)</td>
+                            <td>${tissue_quantity_for_production}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Estimation du prix total (tissu, elastique, conditionnement)</td>
+                            <td>${total_production_cost}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
+            <div class="row table-row">
+                <div class="col-3 table-desc">
+                    <h2>Pour la découpe et le pliage</h2>
+                </div>
 
-            <div class="col-9 table-content">
-                <table class="table">
-                    <tr>
-                        <td>Nombre de personnes à la couture</td>
-                        <td>${sewing_machine_number}</td>
-                    </tr>
+                <div class="col-9 table-content">
+                    <table class="sub-table">
+                        <tr>
+                            <td>Nombre de personnes à la découpe et au pliage</td>
+                            <td>${cutting_people}</td>
+                        </tr>
 
-                    <tr>
-                        <td>Nombre de masques à produire</td>
-                        <td>${desired_mask_number}</td>
-                    </tr>
+                        <tr>
+                            <td>Ciseaux à tissu</td>
+                            <td><!-- ${scisors_number} -->A définir localement</td>
+                        </tr>
 
-                    <tr>
-                        <td>Longueur totale d'élastique en m</td>
-                        <td>${elastic_quantity_for_production}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Longueur tissu en m (pour 1.5m de large)</td>
-                        <td>${tissue_quantity_for_production}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Estimation du prix total (tissu, elastique, conditionnement)</td>
-                        <td>${total_production_cost}</td>
-                    </tr>
-                </table>
+                        <tr>
+                            <td>Fer à repasser</td>
+                            <td>${iron_number}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-3 table-desc">
-                <h2>Pour la découpe et le pliage</h2>
+            <div class="row table-row">
+                <div class="col-3 table-desc">
+                    <h2>Pour le conditionnement</h2>
+                </div>
+
+                <div class="col-9 table-content">
+                    <table class="sub-table">
+                        <tr>
+                            <td>Nombre de personnes au conditionnement</td>
+                            <td>${packing_people}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Machines à conditionner</td>
+                            <td>${packing_people}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Type de plastique</td>
+                            <td>A définir</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
+            <div class="row table-row">
+                <div class="col-3 table-desc">
+                    <h2>Autre</h2>
+                </div>
 
-            <div class="col-9 table-content">
-                <table class="table">
-                    <tr>
-                        <td>Nombre de personnes à la découpe et au pliage</td>
-                        <td>${cutting_people}</td>
-                    </tr>
+                <div class="col-9 table-content">
+                    <table class="sub-table">
+                        <tr>
+                            <td>Marquage au sol</td>
+                            <td>A définir localement</td>
+                        </tr>
 
-                    <tr>
-                        <td>Ciseaux à tissu</td>
-                        <td><!-- ${scisors_number} -->A définir localement</td>
-                    </tr>
+                        <tr>
+                            <td>Gel hydroalcoolique</td>
+                            <td>A définir localement</td>
+                        </tr>
 
-                    <tr>
-                        <td>Fer à repasser</td>
-                        <td>${iron_number}</td>
-                    </tr>
-                </table>
+                        <tr>
+                            <td>Visières de protection</td>
+                            <td>${visor_quantity}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-3 table-desc">
-                <h2>Pour le conditionnement</h2>
-            </div>
+            <br/><br/>
 
-            <div class="col-9 table-content">
-                <table class="table">
-                    <tr>
-                        <td>Nombre de personnes au conditionnement</td>
-                        <td>${packing_people}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Machines à conditionner</td>
-                        <td>${packing_people}</td>
-                    </tr>
-
-                    <tr>
-                        <td>Type de plastique</td>
-                        <td>A définir</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-3 table-desc">
-                <h2>Autre</h2>
-            </div>
-
-            <div class="col-9 table-content">
-                <table class="table">
-                    <tr>
-                        <td>Marquage au sol</td>
-                        <td>A définir localement</td>
-                    </tr>
-
-                    <tr>
-                        <td>Gel hydroalcoolique</td>
-                        <td>A définir localement</td>
-                    </tr>
-
-                    <tr>
-                        <td>Visières de protection</td>
-                        <td>${visor_quantity}</td>
-                    </tr>
-                </table>
+            <div class="row decorated-row">
+                <div class="col-4">
+                    <input type="text" style="height: 100%; display:block;" v-model="ref_tag" placeholder="Votre référence de dossier">
+                </div>
+                <div class="col-4">
+                    <button type="button" @click="set_reference_data()" class="btn btn-blue content-fluid">Charger le dossier <i class="fas fa-download"></i></button>
+                </div>
+                <div class="col-4">
+                    <button type="button" @click='get_reference_data()' class="btn btn-green content-fluid">Sauvegarder <i class="far fa-save"></i></button>
+                </div>
             </div>
         </div>
         <br/><br/>
-
-        <div class="row">
-            <div class="col-3">
-                <input type="text" v-model="ref_tag" placeholder="Votre référence de dossier">
-            </div>
-            <div class="col-1"></div>
-            <div class="col-3">
-                <button type="button" @click="set_reference_data()" class="btn btn-blue content-fluid">Charger le dossier <i class="fas fa-download"></i></button>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-4">
-                <button type="button" @click='get_reference_data()' class="btn btn-green content-fluid">Sauvegarder <i class="far fa-save"></i></button>
-            </div>
-        </div>
     </div>
-    <br/><br/>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.js"></script>
