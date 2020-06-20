@@ -103,7 +103,7 @@ h1, h2, h3, h4, h5, h6 {
 .menu ul > a .slider {
     width: 0%;
     display: block;
-    position: absolute;
+    position: relative;
     bottom: 30%;
     border-bottom: 3px solid #333;
     transition: width 0.2s ease;
