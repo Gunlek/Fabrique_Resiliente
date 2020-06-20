@@ -43,7 +43,8 @@ h1, h2, h3, h4, h5, h6 {
     background-image: url('/img/bandeau.jpg');
     margin: 0 0;
     padding: 0 0;
-    height: 150px;
+    min-height: 60px;
+    height: 7vw;
     position: relative;
     left: 0;
     right: 0;
@@ -73,16 +74,24 @@ h1, h2, h3, h4, h5, h6 {
     list-style: none;
     margin: 0;
     padding: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .menu ul li{
     margin: 0 0;
     display: inline-block;
-    line-height: 150px;
-    font-size: 30px;
+    font-size: 2em;
     color: #333;
     font-family: Ubuntu;
     transition: background-color 0.2s, color 0.2s;
+}
+
+@media screen and (max-width: 1350px) {
+    .menu ul li {
+        font-size: 1.5em;
+    }
 }
 
 .menu ul > a {
